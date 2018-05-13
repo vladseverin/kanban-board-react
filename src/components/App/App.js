@@ -10,10 +10,7 @@ import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Paper from 'material-ui/Paper';
-import Button from 'material-ui/Button';
-import AddIcon from '@material-ui/icons/Add';
-
+import List from '../List';
 
 const theme = createMuiTheme({
   palette: {
@@ -56,9 +53,7 @@ const styles = theme => ({
     marginLeft: 12,
     marginRight: 20,
   },
-  hide: {
-    display: 'none',
-  },
+
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
@@ -91,52 +86,22 @@ const styles = theme => ({
   contentShiftLeft: {
     marginLeft: 0,
   },
-
   wrapBoard: {
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     flexFlow: 'row wrap',
-    
-  },
-
-  wrapList: {
-    width: 270,
-    height: '100%',
-    backgroundColor: '#fafafa',
-    padding: theme.spacing.unit,
-    margin: `0px ${theme.spacing.unit}px 0px ${theme.spacing.unit}px`,
-    marginTop: theme.spacing.unit * 3,
-  },
-
-  listHeader: {
-    flex: '0 0 auto',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  listCard: {
-    flex: '1 1 auto',
-  },
-  openCardComposer: {
-    flex: '0 0 auto',
-    textDecoration: 'none',
-    display: 'block',
-    color: '#bbbbbb',
-    marginTop: theme.spacing.unit,
-    '&:hover': {
-      color: '#6ba1ce',
-    }
   },
   hide: {
     display: 'none',
-  }
+  },
 });
 
 class PersistentDrawer extends React.Component {
   state = {
     open: false,
     anchor: 'left',
+    isOpen: false,
   };
 
   handleDrawerOpen = () => {
@@ -153,9 +118,13 @@ class PersistentDrawer extends React.Component {
     });
   };
 
+  handleChangeCompooser = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  }
+ 
   render() {
     const { classes } = this.props;
-    const { anchor, open } = this.state;
+    const { anchor, open, isOpen } = this.state;
 
     return (
       <MuiThemeProvider theme={theme}>
@@ -205,45 +174,9 @@ class PersistentDrawer extends React.Component {
             })}
           >
             <div className={classes.wrapBoard}>
-
-              <Paper className={classes.wrapList} >
-                <Typography className={classes.listHeader} variant="subheding" component="h3">
-                  Нужно сделать
-                  <Button variant="raised" color="primary" size="small">
-                    <AddIcon />
-                  </Button>
-                </Typography>
-                <a className={classes.openCardComposer} href="javascript:void(0);">
-                  Добавить карточку...
-                </a>
-        
-              </Paper>
-
-              <Paper className={classes.wrapList} >
-                <Typography className={classes.listHeader} variant="subheding" component="h3">
-                  В процессе
-                  <Button variant="raised" color="primary" size="small">
-                    <AddIcon />
-                  </Button>
-                </Typography>
-                <a className={classes.openCardComposer} href="javascript:void(0);">
-                  Добавить карточку...
-                </a>
-        
-              </Paper>
-
-              <Paper className={classes.wrapList} >
-                <Typography className={classes.listHeader} variant="subheding" component="h3">
-                  Готово
-                  <Button variant="raised" color="primary" size="small">
-                    <AddIcon />
-                  </Button>
-                </Typography>
-                <a className={classes.openCardComposer} href="javascript:void(0);">
-                  Добавить карточку...
-                </a> 
-              </Paper>
-
+              <List title='Нужно сделать' task='Курсовая работа' />
+              <List title='В процессе' task='Ргр' />
+              <List title='Готово' task='Отчет по практике' />
             </div>
           </main>
         </div>
