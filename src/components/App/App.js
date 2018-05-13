@@ -10,15 +10,16 @@ import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import Paper from 'material-ui/Paper';
+import Button from 'material-ui/Button';
+import AddIcon from '@material-ui/icons/Add';
+
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
       main: '#BBDEFB',
       contrastText: '#212121',
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contast with palette.primary.main
     },
   },
 });
@@ -72,7 +73,7 @@ const styles = theme => ({
   content: {
     paddingTop: theme.spacing.unit * 8,
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: '#d9eeff',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -90,6 +91,46 @@ const styles = theme => ({
   contentShiftLeft: {
     marginLeft: 0,
   },
+
+  wrapBoard: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    flexFlow: 'row wrap',
+    
+  },
+
+  wrapList: {
+    width: 270,
+    height: '100%',
+    backgroundColor: '#fafafa',
+    padding: theme.spacing.unit,
+    margin: `0px ${theme.spacing.unit}px 0px ${theme.spacing.unit}px`,
+    marginTop: theme.spacing.unit * 3,
+  },
+
+  listHeader: {
+    flex: '0 0 auto',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  listCard: {
+    flex: '1 1 auto',
+  },
+  openCardComposer: {
+    flex: '0 0 auto',
+    textDecoration: 'none',
+    display: 'block',
+    color: '#bbbbbb',
+    marginTop: theme.spacing.unit,
+    '&:hover': {
+      color: '#6ba1ce',
+    }
+  },
+  hide: {
+    display: 'none',
+  }
 });
 
 class PersistentDrawer extends React.Component {
@@ -135,7 +176,7 @@ class PersistentDrawer extends React.Component {
                 <MenuIcon />
               </IconButton>
               <Typography variant="title" color="inherit" noWrap>
-                Persistent drawer
+                Kanban Board
               </Typography>
             </Toolbar>
           </AppBar>
@@ -163,7 +204,47 @@ class PersistentDrawer extends React.Component {
               [classes.contentShiftLeft]: open,
             })}
           >
-            <Typography>{'You think water moves fast? You should see ice.'}</Typography>
+            <div className={classes.wrapBoard}>
+
+              <Paper className={classes.wrapList} >
+                <Typography className={classes.listHeader} variant="subheding" component="h3">
+                  Нужно сделать
+                  <Button variant="raised" color="primary" size="small">
+                    <AddIcon />
+                  </Button>
+                </Typography>
+                <a className={classes.openCardComposer} href="javascript:void(0);">
+                  Добавить карточку...
+                </a>
+        
+              </Paper>
+
+              <Paper className={classes.wrapList} >
+                <Typography className={classes.listHeader} variant="subheding" component="h3">
+                  В процессе
+                  <Button variant="raised" color="primary" size="small">
+                    <AddIcon />
+                  </Button>
+                </Typography>
+                <a className={classes.openCardComposer} href="javascript:void(0);">
+                  Добавить карточку...
+                </a>
+        
+              </Paper>
+
+              <Paper className={classes.wrapList} >
+                <Typography className={classes.listHeader} variant="subheding" component="h3">
+                  Готово
+                  <Button variant="raised" color="primary" size="small">
+                    <AddIcon />
+                  </Button>
+                </Typography>
+                <a className={classes.openCardComposer} href="javascript:void(0);">
+                  Добавить карточку...
+                </a> 
+              </Paper>
+
+            </div>
           </main>
         </div>
       </MuiThemeProvider>
