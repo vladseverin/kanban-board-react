@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { withStyles } from 'material-ui/styles';
-import Paper from 'material-ui/Paper';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import ViewHeadline from '@material-ui/icons/ViewHeadline';
 import Create from '@material-ui/icons/Create';
-import classNames from 'classnames';
 import AddBox from '@material-ui/icons/AddBox';
 import Close from '@material-ui/icons/Close';
 
@@ -16,7 +16,6 @@ const styles = theme => ({
     backgroundColor: '#fafafa',
     padding: theme.spacing.unit,
     margin: `0px ${theme.spacing.unit}px 0px ${theme.spacing.unit}px`,
-    marginTop: theme.spacing.unit * 3,
   },
   listHeader: {
     flex: '0 0 auto',
