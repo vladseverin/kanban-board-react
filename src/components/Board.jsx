@@ -8,6 +8,7 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   content: {
+    overflowY: 'scroll',
     paddingTop: theme.spacing.unit * 8,
     flexGrow: 1,
     backgroundColor: '#d9eeff',
