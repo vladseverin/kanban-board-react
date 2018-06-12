@@ -53,7 +53,10 @@ class Board extends Component {
           {
             data && data.length ? (
               data.map((list, id) => 
-                <CardsList title={list.name} key={id} {...list} />
+                <CardsList 
+                  title={list.name} 
+                  key={id} {...list} 
+                />
               )
             ) : (
                 console.log('List do not exist')

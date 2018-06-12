@@ -75,8 +75,9 @@ class CardsList extends Component {
   }
 
   render() {
-    const { classes, title, cards} = this.props;
+    const { classes, title, cards } = this.props;
     const { isOpen } = this.state;
+
     return (
       <Paper className={classes.wrapList} >
         <Typography className={classes.listHeader} variant="subheading" component="h3">
