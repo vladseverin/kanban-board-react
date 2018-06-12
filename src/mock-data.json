@@ -1,0 +1,49 @@
+{
+  "lists": [
+    {
+      "name": "To do",
+      "cards": [
+        {
+          "cardName" : "make home work"
+        },
+        {
+          "cardName": "make coursework"
+        },
+        {
+          "cardName": "sleep to day"
+        }
+      ]
+    },
+    {
+      "name": "During",
+      "cards": [
+        {
+          "cardName": "qqqqqqq"
+        },
+        {
+          "cardName": "wwwwwww"
+        },
+        {
+          "cardName": "eeeeeee"
+        },
+        {
+          "cardName": "absd fsd fsdf "
+        }
+      ]
+    },
+    {
+      "name": "Completed",
+      "cards": [
+        {
+          "cardName": "11111111111"
+        },
+        {
+          "cardName": "222222222222"
+        },
+        {
+          "cardName": "3333333333"
+        }
+      ]
+    }
+  ]
+}

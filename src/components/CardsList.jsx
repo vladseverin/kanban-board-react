@@ -26,6 +26,7 @@ const styles = theme => ({
     fontWeight: 'bold',
   },
   cardComposerTextarea: {
+    fontSize: theme.spacing.unit * 2,
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     paddingLeft: theme.spacing.unit,
@@ -35,7 +36,6 @@ const styles = theme => ({
     resize: 'none',
     minHeight: 70,
     borderRadius: 2,
-    fontSize: theme.spacing.unit * 2,
     outline: 'none',
     boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
   },
@@ -75,7 +75,7 @@ class CardsList extends Component {
   }
 
   render() {
-    const { classes, title, } = this.props;
+    const { classes, title, cards} = this.props;
     const { isOpen } = this.state;
     return (
       <Paper className={classes.wrapList} >
@@ -86,9 +86,18 @@ class CardsList extends Component {
           </IconButton>
         </Typography>
 
-        <Card task='Курсовая работа' />
-        <Card task='Домашняя работа' />
-        <Card task='Работа' />
+        {
+          cards && cards.length ? (
+            cards.map((card, id) => 
+              <Card
+                task={card.cardName} 
+                key={id}
+              />
+            )
+          ) : (
+              console.log('Сards do not exist')
+          )
+        }
 
         <div className={classNames(classes.cardComposer, isOpen ? '' : classes.hide)}>
           <textarea placeholder="Добавить карточку..." className={classes.cardComposerTextarea}></textarea>

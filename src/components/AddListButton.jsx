@@ -15,6 +15,7 @@ const styles = theme => ({
     padding: theme.spacing.unit,
   },
   cardComposerTextarea: {
+    fontSize: theme.spacing.unit * 2,
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     paddingLeft: theme.spacing.unit,
