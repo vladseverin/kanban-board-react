@@ -66,17 +66,8 @@ const styles = theme => ({
 });
 
 class CardsList extends Component {
-  state = {
-    isOpen: false,
-  };
-
-  handleChangeCompooser = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-  }
-
   render() {
-    const { classes, title, cards } = this.props;
-    const { isOpen } = this.state;
+    const { classes, title, cards, isOpen, toggleOpen, handleClose } = this.props;
 
     return (
       <Paper className={classes.wrapList} >
@@ -105,13 +96,13 @@ class CardsList extends Component {
           <IconButton>
             <AddBox color="secondary" />
           </IconButton>
-          <IconButton onClick={this.handleChangeCompooser}>
+          <IconButton onClick={handleClose}>
             <Close color="secondary" />
           </IconButton>
         </div>
 
         <a className={classNames(classes.openCardComposer, isOpen ? classes.hide : '')} href="javascript:void(0);"
-          onClick={this.handleChangeCompooser}>
+          onClick={toggleOpen}>
           Добавить карточку...
         </a>
       </Paper>

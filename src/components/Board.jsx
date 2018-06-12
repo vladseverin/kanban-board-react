@@ -39,8 +39,23 @@ const styles = theme => ({
 });
 
 class Board extends Component {
+  state = {
+    openTextariaInputId: null
+  }
+
+  toggleOpenTextariaInput(openTextariaInputId) {
+    this.setState({ openTextariaInputId });
+  }
+
+  handleClose = () => {
+    this.setState({
+      openTextariaInputId: null,
+    })
+  }
+
   render() {
     const { classes, open, data } = this.props;
+    const { openTextariaInputId } = this.state;
 
     return (
       <main
@@ -56,6 +71,9 @@ class Board extends Component {
                 <CardsList 
                   title={list.name} 
                   key={id} {...list} 
+                  isOpen={id === openTextariaInputId}
+                  toggleOpen={this.toggleOpenTextariaInput.bind(this, id)}
+                  handleClose={this.handleClose}
                 />
               )
             ) : (
