@@ -10,8 +10,8 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ButtonAddNew from './ButtonAddNew';
-import List from './List';
+import AddListButton from './AddListButton';
+import CardsList from './CardsList';
 
 const theme = createMuiTheme({
   palette: {
@@ -26,6 +26,7 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   appFrame: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     height: '100%',
     zIndex: 1,
     overflow: 'hidden',
@@ -176,8 +177,8 @@ class PersistentDrawer extends React.Component {
             })}
           >
             <div className={classes.wrapBoard}>
-              <List title='Нужно сделать' task='Курсовая работа' />
-              <ButtonAddNew />
+              <CardsList title='Нужно сделать' />
+              <AddListButton />
             </div>
           </main>
         </div>

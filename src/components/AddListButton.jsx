@@ -8,7 +8,8 @@ import Close from '@material-ui/icons/Close';
 const styles = theme => ({
   wrapButton: {
     width: '100%',
-    maxWidth: '250px',
+    maxWidth: '270px',
+    margin: '0px 8px 8px 8px',
   },
   wrapInnerButton: {
     padding: theme.spacing.unit,
@@ -23,7 +24,6 @@ const styles = theme => ({
     resize: 'none',
     minHeight: 70,
     borderRadius: 2,
-    fontSize: theme.spacing.unit * 2,
     outline: 'none',
     boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
   },
@@ -56,7 +56,7 @@ const styles = theme => ({
   },
 })
 
-class ButtonAddNew extends Component {
+class AddListButton extends Component {
   state = {
     isOpen: false,
   };
@@ -70,8 +70,13 @@ class ButtonAddNew extends Component {
     const { isOpen } = this.state;
     return (
       <div className={classes.wrapButton} >
-          <div className={classNames(classes.cardComposer, isOpen ? '' : classes.hide)}>
-            <textarea className={classes.cardComposerTextarea} placeholder="Добавить карточку..."></textarea>
+          <div className={
+            classNames(classes.cardComposer, 
+              isOpen 
+              ? '' 
+              : classes.hide
+          )}>
+            <textarea className={classes.cardComposerTextarea} placeholder="Добавить список..."></textarea>
             <IconButton>
               <AddBox color="secondary" />
             </IconButton>
@@ -79,14 +84,20 @@ class ButtonAddNew extends Component {
               <Close color="secondary" />
             </IconButton>
           </div>
-
-          <a className={classNames(classes.openCardComposer, isOpen ? classes.hide : '')} href="javascript:void(0);"
-            onClick={this.handleChangeCompooser}>
-            Добавить карточку...
+          <a 
+            href="javascript:void(0);"
+            onClick={this.handleChangeCompooser}
+            className={
+              classNames(classes.openCardComposer, 
+                isOpen 
+                ? classes.hide 
+                : ''
+          )}>
+            Добавить список...
           </a>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(ButtonAddNew);
+export default withStyles(styles)(AddListButton);
