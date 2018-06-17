@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import AddListButton from './AddListButton';
@@ -39,6 +40,21 @@ const styles = theme => ({
 });
 
 class Board extends Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    open: PropTypes.bool.isRequired,
+    data: PropTypes.arrayOf(PropTypes.shape({
+      cards: PropTypes.arrayOf(PropTypes.shape({
+        cardName: PropTypes.string.isRequired,
+      })),
+      name: PropTypes.string.isRequired,
+    })),
+  }
+
+  static defaultProps = {
+    data: [],
+  }
+
   state = {
     openTextariaInputId: null
   }
@@ -86,5 +102,7 @@ class Board extends Component {
     );
   }
 }
+
+
 
 export default withStyles(styles)(Board);
