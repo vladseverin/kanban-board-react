@@ -6,6 +6,7 @@ import Board from './Board';
 
 const styles = theme => ({
   appFrame: {
+    flexGrow: 1,
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     height: '100%',
     zIndex: 1,
