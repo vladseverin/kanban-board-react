@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import BoardHeader from './BoardHeader';
 import BoardSidebar from './BoardSidebar';

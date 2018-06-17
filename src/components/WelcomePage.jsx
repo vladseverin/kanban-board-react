@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -62,8 +63,10 @@ class WelcomePage extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { username } = this.state;
 
-    console.log(this.state.username);
+    this.props.login(username)
+    localStorage.setItem('token', username);
 
     this.setState({
       username: ''
@@ -71,8 +74,15 @@ class WelcomePage extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, isAuthenticated } = this.props;
     const { username } = this.state;
+
+    if (isAuthenticated) {
+      return (
+        <Redirect to='/board' />
+      );
+    }
+
     return (
       <div className={classes.root}>
         <AppBar position="static">
