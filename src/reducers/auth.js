@@ -1,6 +1,6 @@
 import * as types from '../constants/auth';
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('KANABAN_TOKEN');
 
 const initialState = {
   isAuthenticated: !!token,

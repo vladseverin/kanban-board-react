@@ -66,7 +66,7 @@ class WelcomePage extends React.Component {
     const { username } = this.state;
 
     this.props.login(username)
-    localStorage.setItem('token', username);
+    localStorage.setItem('KANABAN_TOKEN', username);
 
     this.setState({
       username: ''
