@@ -5,7 +5,9 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import 'typeface-roboto';
-import { store } from './store/index';
+import configureStore  from './store/index';
+
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
@@ -13,4 +15,5 @@ ReactDOM.render(
   </Provider>, 
   document.getElementById('root')
 );
+
 registerServiceWorker();

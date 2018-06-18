@@ -5,7 +5,6 @@ const token = localStorage.getItem('KANABAN_TOKEN');
 const initialState = {
   isAuthenticated: !!token,
   username: null,
-  token,
 }
 
 export default function(state = initialState, action) {

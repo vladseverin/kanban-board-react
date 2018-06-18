@@ -1,13 +1,14 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import logger from 'redux-logger';
 import rootReducer from '../reducers';
-import { login } from '../actions/auth';
 
-export const store = createStore(rootReducer);
-
-store.subscribe(() =>
-  console.log(store.getState())
-)
-
-window.store = store;
-window.login = login;
-
+export default function configureStore() {
+  if (process.env.NODE_ENV === 'production') {
+    return createStore(rootReducer);
+  } else {
+    return createStore(
+      rootReducer,
+      applyMiddleware(logger)
+    )
+  }
+};
