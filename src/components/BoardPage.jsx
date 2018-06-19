@@ -1,10 +1,9 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import BoardHeader from './BoardHeader';
 import BoardSidebar from './BoardSidebar';
 import Board from './Board';
-import { lists } from '../mock-data';
+// import { lists } from '../mock-data';
 
 const styles = theme => ({
   appFrame: {
@@ -33,7 +32,7 @@ class BoardPage extends React.Component {
   };
  
   render() {
-    const { classes } = this.props;
+    const { classes, lists, addList} = this.props;
     const { open } = this.state;
 
     return (
@@ -46,7 +45,7 @@ class BoardPage extends React.Component {
             handleClose={() => this.handleDrawerClose()}
             open={open}
           />
-          <Board open={open} data={lists} />
+        <Board open={open} data={lists} addList={addList}/>
         </div>
     );
   }

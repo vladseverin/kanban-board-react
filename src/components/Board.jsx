@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import AddListButton from './AddListButton';
 import CardsList from './CardsList';
 
+
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -47,7 +48,7 @@ class Board extends Component {
       cards: PropTypes.arrayOf(PropTypes.shape({
         cardName: PropTypes.string.isRequired,
       })),
-      name: PropTypes.string.isRequired,
+      name: PropTypes.string,
     })),
   }
 
@@ -70,7 +71,7 @@ class Board extends Component {
   }
 
   render() {
-    const { classes, open, data } = this.props;
+    const { classes, open, data, addList} = this.props;
     const { openTextariaInputId } = this.state;
 
     return (
@@ -83,12 +84,12 @@ class Board extends Component {
         <div className={classes.wrapBoard}>
           {
             data && data.length ? (
-              data.map((list, id) => 
+              data.map((list) => 
                 <CardsList 
-                  title={list.name} 
-                  key={id} {...list} 
-                  isOpen={id === openTextariaInputId}
-                  toggleOpen={this.toggleOpenTextariaInput.bind(this, id)}
+                  title={list.nameList} 
+                  key={list.listId} {...list} 
+                  isOpen={list.listId === openTextariaInputId}
+                  toggleOpen={this.toggleOpenTextariaInput.bind(this, list.listId)}
                   handleClose={this.handleClose}
                 />
               )
@@ -96,7 +97,7 @@ class Board extends Component {
                 console.log('List do not exist')
             )
           }
-          <AddListButton />
+          <AddListButton addList={addList} />
         </div>
       </main>
     );

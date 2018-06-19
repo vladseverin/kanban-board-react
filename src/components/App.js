@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import WeclomePage from '../containers/WelcomePage';
-import BoardPage from './BoardPage';
+import BoardPage from '../containers/BoardPage';
 
 const theme = createMuiTheme({
   palette: {
