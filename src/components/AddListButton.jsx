@@ -84,6 +84,7 @@ class AddListButton extends Component {
     const { inputText } = this.state;
     
     if ( !inputText ) {
+      // this.setState({error: !error});
       return null;
     }
 
@@ -103,7 +104,7 @@ class AddListButton extends Component {
 
   render() {
     const { classes } = this.props;
-    const { isOpen, inputText, error } = this.state;
+    const { isOpen, inputText } = this.state;
     return (
       <div className={classes.wrapButton} >
         
@@ -140,7 +141,7 @@ class AddListButton extends Component {
           Добавить список...
         </button>
 
-        <ErrorMessage error={error} errorMessage={'Заполните поле перед добавлением!'} />
+        <ErrorMessage inputText={inputText} errorMessage={'Заполните поле перед добавлением!'} />
       </div>
     );
   }

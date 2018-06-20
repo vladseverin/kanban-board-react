@@ -8,7 +8,7 @@ class ErrorMessage extends React.Component {
     open: false,
   };
 
-  handleCloseSnackbar = () => {
+  handleCloseSnackbar = (event, reason) => {
     this.setState({ open: false });
   };
 
@@ -19,7 +19,7 @@ class ErrorMessage extends React.Component {
   }
 
   render() {
-    const { error, errorMessage } = this.props;
+    const { error } = this.props;
 
     if (!error) {
       return null;
@@ -34,7 +34,7 @@ class ErrorMessage extends React.Component {
         open={this.state.open}
         autoHideDuration={6000}
         onClose={this.handleCloseSnackbar}
-        message={<span>{errorMessage}</span>}
+        message={<span>{error.message}</span>}
         action={[
           <IconButton
             key="close"

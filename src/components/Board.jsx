@@ -87,9 +87,9 @@ class Board extends Component {
               data.map((list) => 
                 <CardsList 
                   title={list.nameList} 
-                  key={list.listId} {...list} 
-                  isOpen={list.listId === openTextariaInputId}
-                  toggleOpen={this.toggleOpenTextariaInput.bind(this, list.listId)}
+                  key={list._id} {...list} 
+                  isOpen={list._id === openTextariaInputId}
+                  toggleOpen={this.toggleOpenTextariaInput.bind(this, list._id)}
                   handleClose={this.handleClose}
                 />
               )

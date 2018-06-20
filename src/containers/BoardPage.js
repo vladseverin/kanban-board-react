@@ -4,7 +4,8 @@ import { addList, addCard } from '../actions/board';
 
 const mapStateToProps = state => ({
   username: state.auth.username,
-  lists: state.board.lists,
+  allIds: state.board.allIds,
+  byIds: state.board.byIds,
 });
 
 const mapDispatchToProps = dispatch => ({
