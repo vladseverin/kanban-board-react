@@ -45,8 +45,7 @@ const styles = theme => ({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     '&:hover': {
       color: '#6ba1ce',
-    }
-
+    },
   },
   cardComposer: {
     padding: '10px',
@@ -86,7 +85,6 @@ class AddListButton extends Component {
     const { inputText } = this.state;
     
     if ( !inputText ) {
-      // this.setState({error: !error});
       return null;
     }
 

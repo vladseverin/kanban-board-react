@@ -45,7 +45,12 @@ class BoardPage extends React.Component {
             handleClose={() => this.handleDrawerClose()}
             open={open}
           />
-        <Board open={open} data={arrayLists} addList={addList} addCard={addCard}/>
+          <Board 
+            open={open} 
+            data={arrayLists} 
+            addList={addList} 
+            addCard={addCard}
+          />
         </div>
     );
   }

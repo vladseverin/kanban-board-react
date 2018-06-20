@@ -94,7 +94,6 @@ class WelcomePage extends React.Component {
         </AppBar>
         <Paper className={classes.wrapPaper} elevation={4}>
           <Typography variant="title" color="inherit" className={classes.title}>
-
             <form className={classes.wrapperForm} onSubmit={this.handleSubmit}>
               <TextField
                 required
@@ -114,7 +113,6 @@ class WelcomePage extends React.Component {
                 Login <Send className={classes.iconSend} />
               </Button>
             </form>
-
           </Typography>
         </Paper>
       </div>

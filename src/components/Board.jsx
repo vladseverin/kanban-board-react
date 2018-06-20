@@ -96,7 +96,7 @@ class Board extends Component {
                 />
               )
             ) : (
-                console.log('List do not exist')
+              console.log('List don\'t exist')
             )
           }
           <AddListButton addList={addList} />
@@ -105,7 +105,5 @@ class Board extends Component {
     );
   }
 }
-
-
 
 export default withStyles(styles)(Board);

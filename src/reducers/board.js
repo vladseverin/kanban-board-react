@@ -2,45 +2,8 @@ import { combineReducers } from 'redux'
 import * as types from '../constants';
 
 const initialState = {
-  allIds: ['0', '1'],
-  byIds : {
-    '0': {
-      _id: '0',
-      nameList: 'title',
-      cards: [
-        { 
-          cardId: '1',
-          cardName: 'ToDo',
-        },
-        {
-          cardId: '2',
-          cardName: 'ToDo 2',
-        },
-        {
-          cardId: '3',
-          cardName: 'ToDo 3',
-        },
-      ]
-    },
-    "1": {
-      _id: '1',
-      nameList: 'title',
-      cards: [
-        {
-          cardId: '1',
-          cardName: 'ToDo',
-        },
-        {
-          cardId: '2',
-          cardName: 'ToDo 2',
-        },
-        {
-          cardId: '3',
-          cardName: 'ToDo 3',
-        },
-      ]
-    }
-  }
+  allIds: [],
+  byIds: {}
 }
 
 const allIds = (state = initialState.allIds, action) => {
