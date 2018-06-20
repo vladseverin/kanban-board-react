@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddBox from '@material-ui/icons/AddBox';
 import Close from '@material-ui/icons/Close';
 import ErrorMessage from './ErrorMessage';
-import { generateKey } from '../utils/keyGenerator';
+import uuidv4 from 'uuid/v4';
 
 const styles = theme => ({
   wrapButton: {
@@ -75,7 +75,7 @@ class AddListButton extends Component {
 
   handleChangeCompooser = (event) => {
     event.preventDefault();
-    
+
     this.setState({
       isOpen: !this.state.isOpen,
       inputText: '',
@@ -90,7 +90,7 @@ class AddListButton extends Component {
       return null;
     }
 
-    this.props.addList(generateKey(inputText), inputText)
+    this.props.addList(uuidv4(), inputText)
 
     this.setState({ 
       isOpen: !this.state.isOpen, 

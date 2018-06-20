@@ -8,7 +8,7 @@ import ViewHeadline from '@material-ui/icons/ViewHeadline';
 import AddBox from '@material-ui/icons/AddBox';
 import Close from '@material-ui/icons/Close';
 import Card from './Card';
-import { generateKey } from '../utils/keyGenerator';
+import uuidv4 from 'uuid/v4';
 
 const styles = theme => ({
   wrapList: {
@@ -47,6 +47,7 @@ const styles = theme => ({
     color: '#2d2d2d',
     backgroundColor: 'rgba(35, 35, 35, 0.12)',
     padding: '10px',
+    cursor: 'pointer',
     '&:hover': {
       color: '#6ba1ce',
     }
@@ -81,7 +82,7 @@ class CardsList extends Component {
     const { addCard, handleClose, ...list,} = this.props;
     const { inputText } = this.state;
 
-    addCard(list._id, generateKey(inputText), inputText);
+    addCard(list._id, uuidv4(), inputText);
 
     this.setState({
       inputText: '',
