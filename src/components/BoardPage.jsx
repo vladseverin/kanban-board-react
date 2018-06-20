@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import BoardHeader from './BoardHeader';
 import BoardSidebar from './BoardSidebar';
 import Board from './Board';
-import { lists } from '../mock-data';
 
 const styles = theme => ({
   appFrame: {
@@ -32,8 +31,9 @@ class BoardPage extends React.Component {
   };
  
   render() {
-    const { classes, addList, allIds, byIds} = this.props;
+    const { classes, allIds, byIds, addList, addCard } = this.props;
     const { open } = this.state;
+    const arrayLists = allIds.map((id) => byIds[id])
     
     return (
         <div className={classes.appFrame}>
@@ -45,7 +45,7 @@ class BoardPage extends React.Component {
             handleClose={() => this.handleDrawerClose()}
             open={open}
           />
-          <Board open={open} data={allIds.map((id) => byIds[id])} addList={addList}/>
+        <Board open={open} data={arrayLists} addList={addList} addCard={addCard}/>
         </div>
     );
   }

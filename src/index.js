@@ -7,7 +7,12 @@ import './index.css';
 import 'typeface-roboto';
 import configureStore  from './store/index';
 
+import { addCard } from './actions/board';
+
 const store = configureStore();
+
+window.store = store;
+window.addCard = addCard;
 
 ReactDOM.render(
   <Provider store={store}>

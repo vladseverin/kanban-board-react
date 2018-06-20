@@ -46,7 +46,7 @@ const initialState = {
 const allIds = (state = initialState.allIds, action) => {
   switch (action.type) {
     case types.ADD_LIST:
-      return [...state, action.payload.id];
+      return [...state, action.payload.listId];
     default:
       return state;
   }
@@ -57,9 +57,24 @@ const byIds = (state = initialState.byIds, action) => {
     case types.ADD_LIST:
       return {
         ...state,
-        [action.payload.id]: {
-          _id: action.payload.id,
+        [action.payload.listId]: {
+          _id: action.payload.listId,
           nameList: action.payload.name,
+          cards: [],
+        }
+      };
+    case types.ADD_CARD:
+      return {
+        ...state,
+        [action.payload.listId]: {
+          ...state[action.payload.listId],
+          cards: [
+            ...state[action.payload.listId].cards,
+            { 
+              cardId: action.payload.cardId, 
+              cardName: action.payload.cardName
+            }
+          ],
         }
       };
     default:

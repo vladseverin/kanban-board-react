@@ -8,6 +8,7 @@ import ViewHeadline from '@material-ui/icons/ViewHeadline';
 import AddBox from '@material-ui/icons/AddBox';
 import Close from '@material-ui/icons/Close';
 import Card from './Card';
+import { generateKey } from '../utils/keyGenerator';
 
 const styles = theme => ({
   wrapList: {
@@ -66,8 +67,38 @@ const styles = theme => ({
 });
 
 class CardsList extends Component {
+  state = {
+    inputText: '',
+  };
+
+  handleChange = (event) => {
+    this.setState({
+      inputText: event.target.value,
+    });
+  };
+
+  hanldeAddCard = () => {
+    const { addCard, handleClose, ...list,} = this.props;
+    const { inputText } = this.state;
+
+    addCard(list._id, generateKey(inputText), inputText);
+
+    this.setState({
+      inputText: '',
+    });
+
+    handleClose();
+  }
+
+  toggleOpen = (event) => {
+    event.preventDefault();
+
+    this.props.toggleOpen();
+  }
+
   render() {
-    const { classes, title, cards, isOpen, toggleOpen, handleClose } = this.props;
+    const { classes, title, cards, isOpen, handleClose } = this.props;
+    const { inputText } = this.state;
 
     return (
       <Paper className={classes.wrapList} >
@@ -87,13 +118,18 @@ class CardsList extends Component {
               />
             )
           ) : (
-              console.log('Сards do not exist')
+              console.log('Сards don\'t exist')
           )
         }
 
         <div className={classNames(classes.cardComposer, isOpen ? '' : classes.hide)}>
-          <textarea placeholder="Добавить карточку..." className={classes.cardComposerTextarea}></textarea>
-          <IconButton>
+          <textarea 
+            value={inputText} 
+            onChange={this.handleChange}
+            placeholder="Добавить карточку..." 
+            className={classes.cardComposerTextarea}>
+          </textarea>
+          <IconButton onClick={this.hanldeAddCard}>
             <AddBox color="secondary" />
           </IconButton>
           <IconButton onClick={handleClose}>
@@ -101,8 +137,8 @@ class CardsList extends Component {
           </IconButton>
         </div>
 
-        <a className={classNames(classes.openCardComposer, isOpen ? classes.hide : '')} href="javascript:void(0);"
-          onClick={toggleOpen}>
+        <a className={classNames(classes.openCardComposer, isOpen ? classes.hide : '')}
+          onClick={this.toggleOpen}>
           Добавить карточку...
         </a>
       </Paper>

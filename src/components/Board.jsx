@@ -71,7 +71,7 @@ class Board extends Component {
   }
 
   render() {
-    const { classes, open, data, addList} = this.props;
+    const { classes, open, data, addList, addCard} = this.props;
     const { openTextariaInputId } = this.state;
 
     return (
@@ -86,11 +86,13 @@ class Board extends Component {
             data && data.length ? (
               data.map((list) => 
                 <CardsList 
+                  addCard={addCard}
                   title={list.nameList} 
-                  key={list._id} {...list} 
+                  key={list._id}  
                   isOpen={list._id === openTextariaInputId}
                   toggleOpen={this.toggleOpenTextariaInput.bind(this, list._id)}
                   handleClose={this.handleClose}
+                  {...list}
                 />
               )
             ) : (

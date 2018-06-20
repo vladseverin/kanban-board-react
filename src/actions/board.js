@@ -1,15 +1,15 @@
 import * as types from '../constants/board';
 
-export const addList = (id, name) => {
+export const addList = (listId, name) => {
   return {
     type: types.ADD_LIST,
-    payload: {id, name}
+    payload: { listId, name }
   }
 };
 
-export const addCard = (id, name) => {
+export const addCard = (listId, cardId, cardName) => {
   return {
     type: types.ADD_CARD,
-    payload: {id, name}
+    payload: { listId, cardId, cardName }
   }
 };

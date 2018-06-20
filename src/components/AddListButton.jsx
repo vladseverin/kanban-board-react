@@ -73,7 +73,9 @@ class AddListButton extends Component {
     error: false
   };
 
-  handleChangeCompooser = () => {
+  handleChangeCompooser = (event) => {
+    event.preventDefault();
+    
     this.setState({
       isOpen: !this.state.isOpen,
       inputText: '',
@@ -129,7 +131,6 @@ class AddListButton extends Component {
           </IconButton>
         </div>
         <button 
-          href="javascript:void(0);"
           onClick={this.handleChangeCompooser}
           className={
             classNames(classes.openCardComposer, 
