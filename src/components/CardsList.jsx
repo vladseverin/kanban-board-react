@@ -23,8 +23,9 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: theme.spacing.unit,
+    marginBottom: theme.spacing.unit,
     fontWeight: 'bold',
+    cursor: 'pointer',
   },
   cardComposerTextarea: {
     fontSize: theme.spacing.unit * 2,
@@ -65,16 +66,33 @@ const styles = theme => ({
       cursor: 'grabbing',
     }
   },
+  changeTitle: {
+    padding: '4px 0px 3px 3px',
+    borderRadius: '2px',
+    border: '1px solid gray',
+    width: 'calc(100% - 36px)',
+    fontWeight: 'bold',
+    fontSize: '14px',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+  }
 });
 
 class CardsList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.inputRef = React.createRef();
+  }
+
   state = {
     inputText: '',
+    editTitle: this.props.title,
+    isEdit: false,
   };
 
-  handleChange = (event) => {
+  handleChange = (e) => {
     this.setState({
-      inputText: event.target.value,
+      inputText: e.target.value,
     });
   };
 
@@ -91,20 +109,56 @@ class CardsList extends Component {
     handleClose();
   }
 
-  toggleOpen = (event) => {
-    event.preventDefault();
+  toggleOpen = (e) => {
+    e.preventDefault();
 
     this.props.toggleOpen();
   }
 
+  handleEditTitle = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+
+    this.setState({ editTitle: value });
+  }
+
+  handleClickOnTitle = (e) => {
+    this.setState({ isEdit: true });
+  }
+
+  handleBlur = () => {
+    this.setState({ isEdit: false });
+  }
+
+  handlePressEnter = (e) => {
+    if (e.key === 'Enter') {
+      this.setState({ isEdit: false });
+    }
+  }
+
   render() {
     const { classes, title, cards, isOpen, handleClose } = this.props;
-    const { inputText } = this.state;
+    const { inputText, editTitle, isEdit } = this.state;
+    const isEditTitle = (
+      <input 
+        type='text' 
+        value={editTitle} 
+        className={classes.changeTitle} 
+        onChange={this.handleEditTitle}
+        ref={input => input && input.focus()}
+      />
+    );
 
     return (
       <Paper className={classes.wrapList} >
-        <Typography className={classes.listHeader} variant="subheading" component="h3">
-          {title}
+        <Typography 
+          className={classes.listHeader} 
+          variant="subheading" component="h3" 
+          onClick={this.handleClickOnTitle} 
+          onBlur={this.handleBlur}
+          onKeyPress={this.handlePressEnter}
+        >
+          {isEdit ? isEditTitle : title}
           <IconButton className={classes.buttonTransfer}>
             <ViewHeadline />
           </IconButton>
