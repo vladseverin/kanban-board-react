@@ -78,12 +78,6 @@ const styles = theme => ({
 });
 
 class CardsList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.inputRef = React.createRef();
-  }
-
   state = {
     inputText: '',
     editTitle: this.props.title,
@@ -127,14 +121,29 @@ class CardsList extends Component {
   }
 
   handleBlur = () => {
+    const { editListTitle, ...list } = this.props;
+    const { editTitle } = this.state;
+
+    editListTitle(list._id, editTitle)
     this.setState({ isEdit: false });
   }
 
   handlePressEnter = (e) => {
+    const { editListTitle, ...list } = this.props;
+    const { editTitle } = this.state;
+
     if (e.key === 'Enter') {
+      editListTitle(list._id, editTitle)
       this.setState({ isEdit: false });
     }
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (this.state.editTitle !== nextState.editTitle) {
+  //     return true;
+  //   };
+  //   return false;
+  // }
 
   render() {
     const { classes, title, cards, isOpen, handleClose } = this.props;

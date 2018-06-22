@@ -71,7 +71,7 @@ class Board extends Component {
   }
 
   render() {
-    const { classes, open, data, addList, addCard} = this.props;
+    const { classes, open, data, addList, addCard, editListTitle} = this.props;
     const { openTextariaInputId } = this.state;
 
     return (
@@ -87,6 +87,7 @@ class Board extends Component {
               data.map((list) => 
                 <CardsList 
                   addCard={addCard}
+                  editListTitle={editListTitle}
                   title={list.nameList} 
                   key={list._id}  
                   isOpen={list._id === openTextariaInputId}

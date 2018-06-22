@@ -13,3 +13,10 @@ export const addCard = (listId, cardId, cardName) => {
     payload: { listId, cardId, cardName }
   }
 };
+
+export const editListTitle = (listId, title) => {
+  return {
+    type: types.EDIT_LIST_TITLE,
+    payload: { listId, title }
+  }
+};

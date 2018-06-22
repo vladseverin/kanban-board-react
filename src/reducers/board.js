@@ -47,6 +47,14 @@ const byIds = (state = initialState.byIds, action) => {
           cards: [],
         }
       };
+    case types.EDIT_LIST_TITLE:
+      return {
+        ...state,
+        [action.payload.listId]: {
+          ...state[action.payload.listId],
+          nameList: action.payload.title,
+        }
+      };
     case types.ADD_CARD:
       return {
         ...state,
