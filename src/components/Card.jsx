@@ -122,7 +122,7 @@ class Card extends Component {
               <Button onClick={this.handlePopupClose} color="secondary">
                 Save
             </Button>
-              <Button onClick={this.handlePopupClose} color="secodary" autoFocus>
+              <Button onClick={this.handlePopupClose} autoFocus>
                 Close
             </Button>
             </DialogActions>
