@@ -20,3 +20,10 @@ export const editListTitle = (listId, title) => {
     payload: { listId, title }
   }
 };
+
+export const removeCard = (listId, cardId) => {
+  return {
+    type: types.REMOVE_CARD,
+    payload: { listId, cardId }
+  }
+}

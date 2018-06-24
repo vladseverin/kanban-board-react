@@ -69,6 +69,16 @@ const byIds = (state = initialState.byIds, action) => {
           ],
         }
       };
+    case types.REMOVE_CARD:
+      return {
+        ...state, 
+        [action.payload.listId]: {
+          ...state[action.payload.listId],
+          cards: [
+            ...state[action.payload.listId].cards.filter(card => card.cardId !== action.payload.cardId),
+          ]
+        }
+      }
     default:
       return state;
   }

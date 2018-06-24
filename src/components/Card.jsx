@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Create from '@material-ui/icons/Create';
-
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 const styles = theme => ({
   listCards: {
@@ -31,14 +32,45 @@ const styles = theme => ({
 });
 
 class Card extends Component {
+  state = {
+    anchorEl: null,
+  };
+
+  handleClick = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
+  handleRemoveCard = () => {
+    const { removeCard, ...list} = this.props;
+    const { ...card } = this.props;
+    
+    removeCard(list._id, card.cardId);
+    this.handleClose();
+  }
+
   render() {
     const { classes, task } = this.props;
+    const { anchorEl } = this.state;
+    
     return (
       <div className={classes.listCards}>
         <Paper className={classes.listCard}>
-          <IconButton className={classes.editButton} variant='flat'>
+          <IconButton className={classes.editButton} variant='flat' onClick={this.handleClick}>
             <Create style={{ fontSize: 15 }} />
           </IconButton>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={this.handleClose}
+          >
+            <MenuItem onClick={this.handleClose}>Edit</MenuItem>
+            <MenuItem onClick={this.handleRemoveCard}>Delete</MenuItem>
+          </Menu>
           <Typography className={classes.listCardTitle} variant="body1" component="span">
             {task}
           </Typography >

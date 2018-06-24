@@ -18,12 +18,17 @@ const styles = theme => ({
     padding: theme.spacing.unit,
     margin: '0px 8px 8px 8px',
   },
-  listHeader: {
-    flex: '0 0 auto',
+  wrapHeader: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: theme.spacing.unit,
+  },
+  listHeader: {
+    flex: '1 0 auto',
+    // display: 'flex',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+    // marginBottom: theme.spacing.unit,
     fontWeight: 'bold',
     cursor: 'pointer',
   },
@@ -70,7 +75,7 @@ const styles = theme => ({
     padding: '4px 0px 3px 3px',
     borderRadius: '2px',
     border: '1px solid gray',
-    width: 'calc(100% - 36px)',
+    width: '100%',
     fontWeight: 'bold',
     fontSize: '14px',
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -120,13 +125,13 @@ class CardsList extends Component {
     this.setState({ isEdit: true });
   }
 
-  handleBlur = () => {
-    const { editListTitle, ...list } = this.props;
-    const { editTitle } = this.state;
+  // handleBlur = () => {
+  //   const { editListTitle, ...list } = this.props;
+  //   const { editTitle } = this.state;
 
-    editListTitle(list._id, editTitle)
-    this.setState({ isEdit: false });
-  }
+  //   editListTitle(list._id, editTitle)
+  //   this.setState({ isEdit: false });
+  // }
 
   handlePressEnter = (e) => {
     const { editListTitle, ...list } = this.props;
@@ -138,15 +143,8 @@ class CardsList extends Component {
     }
   }
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (this.state.editTitle !== nextState.editTitle) {
-  //     return true;
-  //   };
-  //   return false;
-  // }
-
   render() {
-    const { classes, title, cards, isOpen, handleClose } = this.props;
+    const { classes, title, cards, isOpen, handleClose, removeCard, ...list } = this.props;
     const { inputText, editTitle, isEdit } = this.state;
     const isEditTitle = (
       <input 
@@ -160,25 +158,32 @@ class CardsList extends Component {
 
     return (
       <Paper className={classes.wrapList} >
-        <Typography 
-          className={classes.listHeader} 
-          variant="subheading" component="h3" 
-          onClick={this.handleClickOnTitle} 
-          onBlur={this.handleBlur}
-          onKeyPress={this.handlePressEnter}
-        >
-          {isEdit ? isEditTitle : title}
+        <div className={classes.wrapHeader}>
+          <Typography
+            className={classes.listHeader}
+            variant="subheading" component="h3"
+            onClick={this.handleClickOnTitle}
+            onBlur={this.handleBlur}
+            onKeyPress={this.handlePressEnter}
+          >
+            {isEdit ? isEditTitle : title}
+          </Typography>
           <IconButton className={classes.buttonTransfer}>
             <ViewHeadline />
           </IconButton>
-        </Typography>
+        </div>
+
 
         {
           cards && cards.length ? (
-            cards.map((card, id) => 
+            cards.map((card) => 
               <Card
+                removeCard={removeCard}
+                {...list}
+                {...card}
                 task={card.cardName} 
-                key={id}
+                key={card.cardId}
+
               />
             )
           ) : (
