@@ -29,6 +29,14 @@ const styles = theme => ({
     '&:hover': {
     },
   },
+  byName: {
+    opacity: 0.6,
+    borderTop: '1px solid #c7bcbc',
+    paddingTop: theme.spacing.unit,
+    textAlign: 'right',
+    fontSize: '12px',
+    color: 'black',
+  },
 });
 
 class Card extends Component {
@@ -55,7 +63,8 @@ class Card extends Component {
   render() {
     const { classes, task } = this.props;
     const { anchorEl } = this.state;
-    
+    const username = localStorage.getItem('KANABAN_TOKEN');
+
     return (
       <div className={classes.listCards}>
         <Paper className={classes.listCard}>
@@ -74,6 +83,9 @@ class Card extends Component {
           <Typography className={classes.listCardTitle} variant="body1" component="span">
             {task}
           </Typography >
+          <Typography className={classes.byName}>
+            ...created by {username}
+          </ Typography >
         </Paper>
       </div>
     );

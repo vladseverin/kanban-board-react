@@ -199,11 +199,10 @@ class CardsList extends Component {
             cards.map((card) => 
               <Card
                 removeCard={removeCard}
-                {...list}
-                {...card}
                 task={card.cardName} 
                 key={card.cardId}
-
+                {...list}
+                {...card}
               />
             )
           ) : (
