@@ -125,20 +125,25 @@ class CardsList extends Component {
     this.setState({ isEdit: true });
   }
 
-  // handleBlur = () => {
-  //   const { editListTitle, ...list } = this.props;
-  //   const { editTitle } = this.state;
+  handleBlur = () => {
+    const { title, editListTitle, ...list } = this.props;
+    const { editTitle } = this.state;
 
-  //   editListTitle(list._id, editTitle)
-  //   this.setState({ isEdit: false });
-  // }
+    if (title !== editTitle ) {
+      editListTitle(list._id, editTitle)
+    }
+
+    this.setState({ isEdit: false });
+  }
 
   handlePressEnter = (e) => {
-    const { editListTitle, ...list } = this.props;
+    const { title, editListTitle, ...list } = this.props;
     const { editTitle } = this.state;
 
     if (e.key === 'Enter') {
-      editListTitle(list._id, editTitle)
+      if (title !== editTitle) {
+        editListTitle(list._id, editTitle)
+      }
       this.setState({ isEdit: false });
     }
   }
@@ -153,18 +158,20 @@ class CardsList extends Component {
         className={classes.changeTitle} 
         onChange={this.handleEditTitle}
         ref={input => input && input.focus()}
+        onBlur={this.handleBlur}
+        onKeyPress={this.handlePressEnter}
       />
     );
 
     return (
       <Paper className={classes.wrapList} >
-        <div className={classes.wrapHeader}>
+        <div className={classes.wrapHeader} >
           <Typography
             className={classes.listHeader}
             variant="subheading" component="h3"
             onClick={this.handleClickOnTitle}
-            onBlur={this.handleBlur}
-            onKeyPress={this.handlePressEnter}
+            
+            
           >
             {isEdit ? isEditTitle : title}
           </Typography>
