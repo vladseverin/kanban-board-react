@@ -96,6 +96,23 @@ class AddListButton extends Component {
     });
   };
 
+  hanldeKeyAddList = (e) => {
+    const { inputText } = this.state;
+
+    if (!inputText) {
+      return null;
+    }
+
+    if (e.key === 'Enter') {
+      this.props.addList(uuidv4(), inputText)
+
+      this.setState({
+        isOpen: !this.state.isOpen,
+        inputText: '',
+      });
+    }
+  }
+
   handleChange = (event) => {
     this.setState({
       inputText: event.target.value,
@@ -119,7 +136,8 @@ class AddListButton extends Component {
           className={classes.cardComposerTextarea} 
           value={inputText} 
           onChange={this.handleChange}
-          placeholder="Добавить список...">
+          placeholder="Добавить список..."
+          onKeyPress={this.hanldeKeyAddList}>
         </textarea>
           <IconButton onClick={this.hanldeAddList}>
             <AddBox color="secondary" />

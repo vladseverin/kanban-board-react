@@ -108,6 +108,19 @@ class CardsList extends Component {
     handleClose();
   }
 
+  hanldeKeyAddCard = (e) => {
+    const { addCard, handleClose, ...list, } = this.props;
+    const { inputText } = this.state;
+
+    if (e.key === 'Enter') {
+      addCard(list._id, uuidv4(), inputText);
+      this.setState({
+        inputText: '',
+      });
+      handleClose();
+    }
+  }
+
   toggleOpen = (e) => {
     e.preventDefault();
 
@@ -203,7 +216,8 @@ class CardsList extends Component {
             value={inputText} 
             onChange={this.handleChange}
             placeholder="Добавить карточку..." 
-            className={classes.cardComposerTextarea}>
+            className={classes.cardComposerTextarea}
+            onKeyPress={this.hanldeKeyAddCard}>
           </textarea>
           <IconButton onClick={this.hanldeAddCard}>
             <AddBox color="secondary" />
