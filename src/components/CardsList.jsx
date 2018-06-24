@@ -99,6 +99,13 @@ class CardsList extends Component {
     const { addCard, handleClose, ...list,} = this.props;
     const { inputText } = this.state;
 
+    if (!inputText || inputText === `\n`) {
+      this.setState({
+        inputText: '',
+      });
+      return null;
+    }
+
     addCard(list._id, uuidv4(), inputText);
 
     this.setState({
@@ -110,7 +117,14 @@ class CardsList extends Component {
 
   hanldeKeyAddCard = (e) => {
     const { addCard, handleClose, ...list, } = this.props;
-    const { inputText } = this.state;
+    let { inputText } = this.state;
+
+    if (!inputText || inputText === `\n`) {
+      this.setState({
+        inputText: '',
+      });
+      return null;
+    }
 
     if (e.key === 'Enter') {
       addCard(list._id, uuidv4(), inputText);
