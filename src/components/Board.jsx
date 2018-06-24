@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import AddListButton from './AddListButton';
 import CardsList from './CardsList';
 
-
 const drawerWidth = 240;
 
 const styles = theme => ({

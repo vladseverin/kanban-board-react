@@ -25,10 +25,6 @@ const styles = theme => ({
   },
   listHeader: {
     flex: '1 0 auto',
-    // display: 'flex',
-    // justifyContent: 'space-between',
-    // alignItems: 'center',
-    // marginBottom: theme.spacing.unit,
     fontWeight: 'bold',
     cursor: 'pointer',
   },

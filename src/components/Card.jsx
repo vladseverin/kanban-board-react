@@ -6,6 +6,12 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
   listCards: {
@@ -42,6 +48,7 @@ const styles = theme => ({
 class Card extends Component {
   state = {
     anchorEl: null,
+    popupOpen: false
   };
 
   handleClick = event => {
@@ -60,9 +67,18 @@ class Card extends Component {
     this.handleClose();
   }
 
+  handleClickPopupOpen = () => {
+    this.setState({ popupOpen: true });
+    this.handleClose();
+  };
+
+  handlePopupClose = () => {
+    this.setState({ popupOpen: false });
+  };
+
   render() {
-    const { classes, task } = this.props;
-    const { anchorEl } = this.state;
+    const { classes, task, ...list } = this.props;
+    const { anchorEl, popupOpen } = this.state;
     const username = localStorage.getItem('KANABAN_TOKEN');
 
     return (
@@ -77,7 +93,7 @@ class Card extends Component {
             open={Boolean(anchorEl)}
             onClose={this.handleClose}
           >
-            <MenuItem onClick={this.handleClose}>Edit</MenuItem>
+            <MenuItem onClick={this.handleClickPopupOpen}>Edit</MenuItem>
             <MenuItem onClick={this.handleRemoveCard}>Delete</MenuItem>
           </Menu>
           <Typography className={classes.listCardTitle} variant="body1" component="span">
@@ -86,6 +102,32 @@ class Card extends Component {
           <Typography className={classes.byName}>
             ...created by {username}
           </ Typography >
+
+          <Dialog
+            open={popupOpen}
+            onClose={this.handlePopupClose}
+          >
+            <DialogTitle>List: {list.nameList} | Card: {task} | Creator: {username}</DialogTitle>
+            <DialogContent>
+              <h3> Description </h3>
+              <textarea></textarea>
+            
+            </DialogContent>
+            <DialogContent>
+              <h3> Adding a comment </h3>
+              <textarea></textarea>
+            
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handlePopupClose} color="secondary">
+                Save
+            </Button>
+              <Button onClick={this.handlePopupClose} color="secodary" autoFocus>
+                Close
+            </Button>
+            </DialogActions>
+          </Dialog>
+
         </Paper>
       </div>
     );
