@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import classNames from 'classnames';
 import AddListButton from './AddListButton';
 import CardsList from './CardsList';
@@ -37,6 +38,9 @@ const styles = theme => ({
     flexFlow: 'row wrap',
     marginTop: theme.spacing.unit,
   },
+  gridSelf: {
+    alignSelf: 'flex-start',
+  }
 });
 
 class Board extends Component {
@@ -80,28 +84,37 @@ class Board extends Component {
           [classes.contentShiftLeft]: open,
         })}
       >
+        
         <div className={classes.wrapBoard}>
-          {
-            data && data.length ? (
-              data.map((list) => 
-                <CardsList 
-                  addCard={addCard}
-                  editListTitle={editListTitle}
-                  removeCard={removeCard}
-                  title={list.nameList} 
-                  key={list._id}  
-                  isOpen={list._id === openTextariaInputId}
-                  toggleOpen={this.toggleOpenTextariaInput.bind(this, list._id)}
-                  handleClose={this.handleClose}
-                  {...list}
-                />
+          <Grid container spacing={24} >
+            {
+              data && data.length ? (
+                data.map((list) => 
+                  <Grid item xs={12} sm={6} md={4} lg={3} key={list._id} className={classes.gridSelf} >
+                    <CardsList 
+                      addCard={addCard}
+                      editListTitle={editListTitle}
+                      removeCard={removeCard}
+                      title={list.nameList} 
+                      key={list._id}  
+                      isOpen={list._id === openTextariaInputId}
+                      toggleOpen={this.toggleOpenTextariaInput.bind(this, list._id)}
+                      handleClose={this.handleClose}
+                      {...list}
+                    />
+                  </Grid>
+                )
+              ) : (
+                console.log('List don\'t exist')
               )
-            ) : (
-              console.log('List don\'t exist')
-            )
-          }
-          <AddListButton addList={addList} />
+            }
+            <Grid item xs={12} sm={6} md={4} lg={3} className={classes.gridSelf} >
+              <AddListButton addList={addList} />
+            </Grid>
+          </Grid>
         </div>
+        
+
       </main>
     );
   }

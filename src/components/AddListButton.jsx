@@ -10,8 +10,7 @@ import uuidv4 from 'uuid/v4';
 const styles = theme => ({
   wrapButton: {
     width: '100%',
-    maxWidth: '270px',
-    margin: '0px 8px 8px 8px',
+    padding: '0 12px 0 12px',
   },
   wrapInnerButton: {
     padding: theme.spacing.unit,

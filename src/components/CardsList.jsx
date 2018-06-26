@@ -12,7 +12,7 @@ import uuidv4 from 'uuid/v4';
 
 const styles = theme => ({
   wrapList: {
-    width: 270,
+    // width: 270,
     height: '100%',
     backgroundColor: '#fafafa',
     padding: theme.spacing.unit,
