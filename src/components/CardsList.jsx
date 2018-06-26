@@ -226,8 +226,8 @@ class CardsList extends Component {
             onChange={this.handleChange}
             placeholder="Добавить карточку..." 
             className={classes.cardComposerTextarea}
-            onKeyPress={this.hanldeKeyAddCard}>
-          </textarea>
+            onKeyPress={this.hanldeKeyAddCard}
+            ref={textarea => textarea && textarea.focus()} />
           <IconButton onClick={this.hanldeAddCard}>
             <AddBox color="secondary" />
           </IconButton>

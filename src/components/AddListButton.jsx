@@ -83,7 +83,10 @@ class AddListButton extends Component {
   hanldeAddList = () => {
     const { inputText } = this.state;
     
-    if ( !inputText ) {
+    if (!inputText || inputText === `\n`) {
+      this.setState({
+        inputText: '',
+      });
       return null;
     }
 
@@ -98,7 +101,10 @@ class AddListButton extends Component {
   hanldeKeyAddList = (e) => {
     const { inputText } = this.state;
 
-    if (!inputText) {
+    if (!inputText || inputText === `\n`) {
+      this.setState({
+        inputText: '',
+      });
       return null;
     }
 
@@ -130,14 +136,14 @@ class AddListButton extends Component {
             ? '' 
             : classes.hide
         )}>
-        <textarea
-          required 
-          className={classes.cardComposerTextarea} 
-          value={inputText} 
-          onChange={this.handleChange}
-          placeholder="Добавить список..."
-          onKeyPress={this.hanldeKeyAddList}>
-        </textarea>
+          <textarea
+            required 
+            className={classes.cardComposerTextarea} 
+            value={inputText} 
+            onChange={this.handleChange}
+            placeholder="Добавить список..."
+            onKeyPress={this.hanldeKeyAddList} 
+            ref={textarea => textarea && textarea.focus()} />
           <IconButton onClick={this.hanldeAddList}>
             <AddBox color="secondary" />
           </IconButton>
