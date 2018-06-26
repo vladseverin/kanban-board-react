@@ -1,32 +1,20 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import uuidv4 from 'uuid/v4';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import ViewHeadline from '@material-ui/icons/ViewHeadline';
 import AddBox from '@material-ui/icons/AddBox';
 import Close from '@material-ui/icons/Close';
 import Card from './Card';
-import uuidv4 from 'uuid/v4';
+import CardListHeader from './CardListHeader';
 
 const styles = theme => ({
   wrapList: {
-    // width: 270,
     height: '100%',
     backgroundColor: '#fafafa',
     padding: theme.spacing.unit,
     margin: '0px 8px 8px 8px',
-  },
-  wrapHeader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  listHeader: {
-    flex: '1 0 auto',
-    fontWeight: 'bold',
-    cursor: 'pointer',
   },
   cardComposerTextarea: {
     fontSize: theme.spacing.unit * 2,
@@ -57,32 +45,11 @@ const styles = theme => ({
   hide: {
     display: 'none',
   },
-  buttonTransfer: {
-    width: '30px',
-    height: '30px',
-    '&:hover': {
-      cursor: 'grab',
-    },
-    '&:active': {
-      cursor: 'grabbing',
-    }
-  },
-  changeTitle: {
-    padding: '4px 0px 3px 3px',
-    borderRadius: '2px',
-    border: '1px solid gray',
-    width: '100%',
-    fontWeight: 'bold',
-    fontSize: '14px',
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-  }
 });
 
 class CardsList extends Component {
   state = {
     inputText: '',
-    editTitle: this.props.title,
-    isEdit: false,
   };
 
   handleChange = (e) => {
@@ -137,72 +104,18 @@ class CardsList extends Component {
     this.props.toggleOpen();
   }
 
-  handleEditTitle = (e) => {
-    e.preventDefault();
-    const { value } = e.target;
-
-    this.setState({ editTitle: value });
-  }
-
-  handleClickOnTitle = (e) => {
-    this.setState({ isEdit: true });
-  }
-
-  handleBlur = () => {
-    const { title, editListTitle, ...list } = this.props;
-    const { editTitle } = this.state;
-
-    if (title !== editTitle ) {
-      editListTitle(list._id, editTitle)
-    }
-
-    this.setState({ isEdit: false });
-  }
-
-  handlePressEnter = (e) => {
-    const { title, editListTitle, ...list } = this.props;
-    const { editTitle } = this.state;
-
-    if (e.key === 'Enter') {
-      if (title !== editTitle) {
-        editListTitle(list._id, editTitle)
-      }
-      this.setState({ isEdit: false });
-    }
-  }
-
   render() {
-    const { classes, title, cards, isOpen, handleClose, removeCard, ...list } = this.props;
-    const { inputText, editTitle, isEdit } = this.state;
-    const isEditTitle = (
-      <input 
-        type='text' 
-        value={editTitle} 
-        className={classes.changeTitle} 
-        onChange={this.handleEditTitle}
-        ref={input => input && input.focus()}
-        onBlur={this.handleBlur}
-        onKeyPress={this.handlePressEnter}
-      />
-    );
+    const { classes, title, cards, isOpen, handleClose, removeCard, editListTitle, ...list } = this.props;
+    const { inputText } = this.state;
 
     return (
       <Paper className={classes.wrapList} >
-        <div className={classes.wrapHeader} >
-          <Typography
-            className={classes.listHeader}
-            variant="subheading" component="h3"
-            onClick={this.handleClickOnTitle}
-            
-            
-          >
-            {isEdit ? isEditTitle : title}
-          </Typography>
-          <IconButton className={classes.buttonTransfer}>
-            <ViewHeadline />
-          </IconButton>
-        </div>
 
+        <CardListHeader 
+          title={title} 
+          editListTitle={editListTitle} 
+          {...list} 
+        />
 
         {
           cards && cards.length ? (
