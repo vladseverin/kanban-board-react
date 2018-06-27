@@ -6,11 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
+import PopupEditMenu from './PopupEditMenu';
 
 const styles = theme => ({
   listCards: {
@@ -102,30 +98,13 @@ class Card extends Component {
             ...created by {username}
           </ Typography >
 
-          <Dialog
-            open={popupOpen}
-            onClose={this.handlePopupClose}
-          >
-            <DialogTitle>List: {list.nameList} | Card: {task} | Creator: {username}</DialogTitle>
-            <DialogContent>
-              <h3> Description </h3>
-              <textarea></textarea>
-            
-            </DialogContent>
-            <DialogContent>
-              <h3> Adding a comment </h3>
-              <textarea></textarea>
-            
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handlePopupClose} color="secondary">
-                Save
-            </Button>
-              <Button onClick={this.handlePopupClose} autoFocus>
-                Close
-            </Button>
-            </DialogActions>
-          </Dialog>
+          <PopupEditMenu 
+            onPopupClose={this.handlePopupClose}
+            username={username} 
+            popupOpen={popupOpen} 
+            task={task} 
+            {...list} 
+          />
 
         </Paper>
       </div>
