@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextareaAutosize from 'react-autosize-textarea';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -7,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Web from '@material-ui/icons/Web';
 import Description from '@material-ui/icons/Description';
 import Comment from '@material-ui/icons/Comment';
+
 
 const styles = theme => ({
   wrapInnerPopup: {
@@ -76,14 +78,20 @@ class PopupEditMenu extends Component {
             <Typography variant="title" className={classes.title}>
               <Description className={classes.customStyle} /> Description
             </Typography>
-            <textarea className={classes.innerTextarea} placeholder="Add a more detailed description"></textarea>
+            <TextareaAutosize 
+              className={classes.innerTextarea} 
+              placeholder="Add a more detailed description"
+            />
           </div>
 
           <div className={classes.contentPopup}>
             <Typography variant="title" className={classes.title}>
               <Comment className={classes.customStyle} /> Adding a comment
             </Typography>
-            <textarea className={classes.innerTextarea} placeholder="Add comment" ></textarea>
+            <TextareaAutosize 
+              className={classes.innerTextarea} 
+              placeholder="Add comment"
+            />
           </div>
 
           Creator: {username}
