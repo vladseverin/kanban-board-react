@@ -7,7 +7,12 @@ const initialState = {
     '0': {
       nameList: 'TODO',
       _id: '0',
-      cards: [],
+      cards: [
+        {
+          cardId: "0",
+          cardName:"To do home work"
+        }
+      ],
     },
     '1': {
       nameList: 'In Progress',
