@@ -1,8 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import WeclomePage from '../containers/WelcomePage';
 import BoardPage from '../containers/BoardPage';
+
+import history from '../utils/history';
 
 const theme = createMuiTheme({
   palette: {
@@ -15,7 +17,7 @@ const theme = createMuiTheme({
 
 const App = () => (
   <MuiThemeProvider theme={theme}>
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route exact path="/(welcome)?" component={WeclomePage} />
         <Route path="/board" component={BoardPage} />

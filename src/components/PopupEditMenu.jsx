@@ -46,11 +46,12 @@ const styles = theme => ({
     width: '100%',
     resize: 'none',
     borderRadius: '5px',
-    backgroundColor: '#edeff0',
-    boxShadow: 'inset 0 1px 6px rgba(0,0,0,.1)',
+    background: 'rgba(0, 0, 0, .03)',
     borderColor: 'rgba(0,0,0,.15)',
+    boxShadow: 'inset 0 1px 6px rgba(0,0,0,.1)',
     outline: 'none',
     font: '14px Helvetica Neue, Arial, Helvetica, sans-serif',
+    paddingBottom: '9px',
   }
 });
 
