@@ -77,8 +77,8 @@ class Card extends Component {
     const username = localStorage.getItem('KANABAN_TOKEN');
 
     return (
-      <div className={classes.listCards}>
-        <Paper className={classes.listCard}>
+      <div className={classes.listCards} >
+        <Paper className={classes.listCard} >
           <IconButton className={classes.editButton} variant='flat' onClick={this.handleClick}>
             <Create style={{ fontSize: 15 }} />
           </IconButton>

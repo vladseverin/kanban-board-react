@@ -56,9 +56,56 @@ const styles = theme => ({
 });
 
 class PopupEditMenu extends Component {
+  state = {
+    description: {
+      isDisabled: true,
+      text: '',
+    },
+    message: {
+      isDisabled: true,
+      text: '',
+    },
+  }
+
+  handleChangeText = (e) => {
+    e.preventDefault();
+
+    this.setState({
+      [e.target.name]: {
+        text: e.target.value
+      }
+    })
+
+    if (e.target.value) {
+      this.setState({
+        [e.target.name]: {
+          isDisabled: false
+        }
+      })
+    } else {
+      this.setState({
+        [e.target.name]: {
+          isDisabled: true
+        }
+      })
+    }
+  }
+
+  componentWillReceiveProps() {
+    this.setState({
+      description: {
+        isDisabled: true
+      },
+      message: {
+        isDisabled: true,
+      },
+    })
+  }
+
   render() {
     const { classes, onPopupClose, popupOpen, task, username, ...list} = this.props;
-
+    const { description, message } = this.state;
+    
     return (
       <Dialog
         open={popupOpen}
@@ -82,7 +129,13 @@ class PopupEditMenu extends Component {
             <TextareaAutosize 
               className={classes.innerTextarea} 
               placeholder="Add a more detailed description"
+              onChange={this.handleChangeText}
+              name="description"
+              value={description.text}
             />
+            <Button disabled={description.isDisabled} color="primary" variant="contained">
+              Save
+            </Button>
           </div>
 
           <div className={classes.contentPopup}>
@@ -92,7 +145,13 @@ class PopupEditMenu extends Component {
             <TextareaAutosize 
               className={classes.innerTextarea} 
               placeholder="Add comment"
+              onChange={this.handleChangeText}
+              value={message.text}
+              name="message"
             />
+            <Button disabled={message.isDisabled} color="primary" variant="contained">
+              Save
+            </Button>
           </div>
 
           Creator: {username}
