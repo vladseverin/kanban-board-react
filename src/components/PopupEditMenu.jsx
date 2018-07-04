@@ -115,7 +115,7 @@ class PopupEditMenu extends Component {
 
           <div className={classes.headerPopup}>
             <Typography variant="display1" className={classes.mainTitle}>
-              <Web className={classes.customStyle} /> {task[0].toUpperCase() + task.slice(1)}
+              <Web className={classes.customStyle} /> {task && task[0].toUpperCase() + task.slice(1)}
             </Typography>
             <Typography variant="subheading" gutterBottom>
               In the <u>{list.nameList}</u> list
@@ -150,7 +150,7 @@ class PopupEditMenu extends Component {
               name="message"
             />
             <Button disabled={message.isDisabled} color="primary" variant="contained">
-              Save
+              Send
             </Button>
           </div>
 

@@ -27,3 +27,26 @@ export const removeCard = (listId, cardId) => {
     payload: { listId, cardId }
   }
 }
+
+export const editDescription = (listId, cardId, description) => {
+  return {
+    type: types.EDIT_DESCRIPTION_CARD,
+    payload: { listId, cardId, description }
+  }
+}
+
+export const addComment = (listId, cardId, comment) => {
+  return {
+    type: types.ADD_COMMENT_CARD,
+    payload: { listId, cardId, comment }
+  }
+}
+
+export const removeComment = (listId, cardId, description) => {
+  return {
+    type: types.REMOVE_COMMENT_CARD,
+    payload: { listId, cardId, description }
+  }
+}
+
+

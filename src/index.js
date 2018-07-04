@@ -7,13 +7,14 @@ import './index.css';
 import 'typeface-roboto';
 import configureStore  from './store/index';
 
-import { editListTitle, removeCard } from './actions/board';
+import { editListTitle, removeCard, editDescription } from './actions/board';
 
 const store = configureStore();
 
 window.store = store;
 window.removeCard = removeCard;
 window.editListTitle = editListTitle;
+window.editDescription = editDescription;
 
 ReactDOM.render(
   <Provider store={store}>

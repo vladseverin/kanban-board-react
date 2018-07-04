@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import * as types from '../constants';
+import card from './card';
 
 const initialState = {
   allIds: ['0', '1', '2', '3'],
@@ -7,12 +8,7 @@ const initialState = {
     '0': {
       nameList: 'TODO',
       _id: '0',
-      cards: [
-        {
-          cardId: "0",
-          cardName:"To do home work"
-        }
-      ],
+      cards: [],
     },
     '1': {
       nameList: 'In Progress',
@@ -67,11 +63,8 @@ const byIds = (state = initialState.byIds, action) => {
           ...state[action.payload.listId],
           cards: [
             ...state[action.payload.listId].cards,
-            { 
-              cardId: action.payload.cardId, 
-              cardName: action.payload.cardName
-            }
-          ],
+            card(undefined, action),
+          ]
         }
       };
     case types.REMOVE_CARD:
@@ -80,10 +73,32 @@ const byIds = (state = initialState.byIds, action) => {
         [action.payload.listId]: {
           ...state[action.payload.listId],
           cards: [
-            ...state[action.payload.listId].cards.filter(card => card.cardId !== action.payload.cardId),
+            ...state[action.payload.listId].cards
+              .filter(remove => 
+                card(remove, action)
+              ),
+          ],
+        },
+      };
+    case types.EDIT_DESCRIPTION_CARD:
+      return {
+        ...state,
+        [action.payload.listId]: {
+          ...state[action.payload.listId],
+          cards: [
+            ...state[action.payload.listId].cards
+              .map(c => card(c, action)),
           ]
         }
-      }
+      };
+    case types.ADD_COMMENT_CARD:
+      return {
+        ...state,
+      };
+    case types.REMOVE_COMMENT_CARD:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
