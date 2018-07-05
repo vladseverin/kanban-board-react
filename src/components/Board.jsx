@@ -13,7 +13,7 @@ const styles = theme => ({
     overflowY: 'scroll',
     paddingTop: theme.spacing.unit * 8,
     flexGrow: 1,
-    backgroundColor: '#d9eeff',
+    backgroundColor: '#2d2d2d',
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

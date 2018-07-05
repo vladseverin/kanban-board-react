@@ -9,9 +9,13 @@ import history from '../utils/history';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#BBDEFB',
-      contrastText: '#212121',
+      main: '#2d2d2d',
+      contrastText: '#fff',
     },
+    secondary: {
+      main: '#2d2d2d',
+      contrastText: '#fff',
+    }
   },
 });
 

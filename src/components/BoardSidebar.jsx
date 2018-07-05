@@ -19,19 +19,25 @@ const styles = theme => ({
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
+    backgroundColor: '#454545',
   },
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: '0 8px',
+    color: '#fafafa',
     ...theme.mixins.toolbar,
   },
   list: {
-    background: '#bbdefb;',
+    background: '#fafafa',
+    borderRadius: 2,
   },
   version: {
     marginLeft: theme.spacing.unit 
+  },
+  rowIcon: {
+    color: '#fafafa',
   }
 });
 
@@ -58,21 +64,19 @@ class BoardSidebar extends Component {
           <div className={classes.version}>
             v.1.0.0
           </div>
-          <IconButton onClick={handleClose}>
+          <IconButton className={classes.rowIcon} onClick={handleClose}>
             <ChevronLeftIcon />
           </IconButton>
         </div>
         <Divider />
 
+        <ListItem button className={classes.list} onClick={this.handleClick}>
+          <ListItemIcon>
+            <ExitToApp />
+          </ListItemIcon>
+          <ListItemText primary="Logout" />
+        </ListItem>
      
-          <ListItem button className={classes.list} onClick={this.handleClick}>
-            <ListItemIcon>
-              <ExitToApp />
-            </ListItemIcon>
-            <ListItemText primary="Logout" />
-          </ListItem>
-     
-
       </Drawer>
     );
   }

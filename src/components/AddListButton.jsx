@@ -25,15 +25,14 @@ const styles = theme => ({
     border: 'none',
     resize: 'none',
     minHeight: 70,
-    borderRadius: 2,
+    borderRadius: 4,
     outline: 'none',
     boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
   },
   openCardComposer: {
     flex: '0 0 auto',
-    color: '#2d2d2d',
     padding: '10px',
-    backgroundColor: 'rgba(35, 35, 35, 0.12)',
+    backgroundColor: '#fafafa',
     width: '100%',
     border: 'none',
     boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
@@ -41,6 +40,7 @@ const styles = theme => ({
     cursor: 'pointer',
     fontSize: theme.spacing.unit * 2,
     textAlign: 'left',
+    borderRadius: 4,
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     '&:hover': {
       color: '#6ba1ce',
@@ -48,8 +48,8 @@ const styles = theme => ({
   },
   cardComposer: {
     padding: '10px',
-    backgroundColor: 'rgba(35, 35, 35, 0.12)',
-    color: '#2d2d2d',
+    backgroundColor: '#fafafa',
+    borderRadius: 4,
   },
   hide: {
     display: 'none',

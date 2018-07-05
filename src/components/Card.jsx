@@ -105,12 +105,13 @@ class Card extends Component {
           <Typography className={classes.listCardTitle} variant="body1" component="span">
             {task}
           </Typography >
-          <Typography className={classes.byInfo}>
+          
+          <div className={classes.byInfo}>
             {description && <Description className={classes.isDescription}/> }
             <div className={classes.creator}>
               ...created by {username}
             </div>
-          </ Typography >
+          </ div>
 
           <PopupEditMenu 
             onPopupClose={this.handlePopupClose}
