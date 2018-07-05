@@ -125,6 +125,7 @@ class CardsList extends Component {
                 removeCard={removeCard}
                 task={card.cardName} 
                 key={card.cardId}
+                description={card.description}
                 {...list}
                 {...card}
               />
@@ -138,7 +139,7 @@ class CardsList extends Component {
           <textarea 
             value={inputText} 
             onChange={this.handleChange}
-            placeholder="Добавить карточку..." 
+            placeholder="Add new card..." 
             className={classes.cardComposerTextarea}
             onKeyPress={this.hanldeKeyAddCard}
             ref={textarea => textarea && textarea.focus()} />
@@ -152,7 +153,7 @@ class CardsList extends Component {
 
         <a className={classNames(classes.openCardComposer, isOpen ? classes.hide : '')}
           onClick={this.toggleOpen}>
-          Добавить карточку...
+          Add new card...
         </a>
       </Paper>
     );

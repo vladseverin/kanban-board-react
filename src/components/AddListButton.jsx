@@ -141,7 +141,7 @@ class AddListButton extends Component {
             className={classes.cardComposerTextarea} 
             value={inputText} 
             onChange={this.handleChange}
-            placeholder="Добавить список..."
+            placeholder="Add new list..."
             onKeyPress={this.hanldeKeyAddList} 
             ref={textarea => textarea && textarea.focus()} />
           <IconButton onClick={this.hanldeAddList}>
@@ -160,7 +160,7 @@ class AddListButton extends Component {
               : ''
             )}
         >
-          Добавить список...
+          Add new list...
         </button>
 
         <ErrorMessage inputText={inputText} errorMessage={'Заполните поле перед добавлением!'} />

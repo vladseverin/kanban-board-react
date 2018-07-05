@@ -95,10 +95,11 @@ class PopupEditMenu extends Component {
     }
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextState) {
     this.setState({
       description: {
-        isDisabled: true
+        isDisabled: true,
+        text: nextState.description,
       },
       message: {
         isDisabled: true,
@@ -168,10 +169,7 @@ class PopupEditMenu extends Component {
           Creator: {username}
 
           <DialogActions>
-            <Button onClick={onPopupClose} color="secondary">
-              Save
-            </Button>
-            <Button onClick={onPopupClose} autoFocus>
+            <Button onClick={onPopupClose} color="secondary" autoFocus>
               Close
             </Button>
           </DialogActions>
