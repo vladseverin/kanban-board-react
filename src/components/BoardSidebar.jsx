@@ -64,14 +64,14 @@ class BoardSidebar extends Component {
         </div>
         <Divider />
 
-        <List component="nav" >
+     
           <ListItem button className={classes.list} onClick={this.handleClick}>
             <ListItemIcon>
               <ExitToApp />
             </ListItemIcon>
             <ListItemText primary="Logout" />
           </ListItem>
-        </List>
+     
 
       </Drawer>
     );

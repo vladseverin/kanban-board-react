@@ -8,6 +8,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import PopupEditMenu from './PopupEditMenu';
 
+import Description from '@material-ui/icons/Description';
+
 const styles = theme => ({
   listCards: {
     flex: '1 1 auto',
@@ -30,14 +32,23 @@ const styles = theme => ({
     '&:hover': {
     },
   },
-  byName: {
+  byInfo: {
     opacity: 0.6,
     borderTop: '1px solid #c7bcbc',
     paddingTop: theme.spacing.unit,
     textAlign: 'right',
     fontSize: '12px',
     color: 'black',
+    display: 'flex',
+    flexFlow: 'row',
+    alignItems: 'center',
   },
+  creator: {
+    marginLeft: 'auto',
+  },
+  isDescription: {
+    fontSize: 18,
+  }
 });
 
 class Card extends Component {
@@ -94,8 +105,11 @@ class Card extends Component {
           <Typography className={classes.listCardTitle} variant="body1" component="span">
             {task}
           </Typography >
-          <Typography className={classes.byName}>
-            ...created by {username}
+          <Typography className={classes.byInfo}>
+            {description && <Description className={classes.isDescription}/> }
+            <div className={classes.creator}>
+              ...created by {username}
+            </div>
           </ Typography >
 
           <PopupEditMenu 

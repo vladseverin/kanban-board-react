@@ -76,23 +76,6 @@ class PopupEditMenu extends Component {
         text: e.target.value
       }
     });
-
-    
-    if (e.target.value) {
-      this.setState({
-        [e.target.name]: {
-          isDisabled: false,
-          text: e.target.value,
-        }
-      })
-    } else {
-      this.setState({
-        [e.target.name]: {
-          isDisabled: true,
-          text: e.target.value,
-        }
-      })
-    }
   }
 
   componentWillReceiveProps(nextState) {
