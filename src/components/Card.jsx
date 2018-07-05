@@ -72,7 +72,7 @@ class Card extends Component {
   };
 
   render() {
-    const { classes, task, ...list } = this.props;
+    const { classes, task, editDescription, key, ...list } = this.props;
     const { anchorEl, popupOpen } = this.state;
     const username = localStorage.getItem('KANABAN_TOKEN');
 
@@ -103,6 +103,8 @@ class Card extends Component {
             username={username} 
             popupOpen={popupOpen} 
             task={task} 
+            editDescription={editDescription}
+            cardId={key}
             {...list} 
           />
 

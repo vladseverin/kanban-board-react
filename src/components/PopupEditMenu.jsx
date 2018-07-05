@@ -72,20 +72,24 @@ class PopupEditMenu extends Component {
 
     this.setState({
       [e.target.name]: {
+        isDisabled: this.state.isDisabled,
         text: e.target.value
       }
-    })
+    });
 
+    
     if (e.target.value) {
       this.setState({
         [e.target.name]: {
-          isDisabled: false
+          isDisabled: false,
+          text: e.target.value,
         }
       })
     } else {
       this.setState({
         [e.target.name]: {
-          isDisabled: true
+          isDisabled: true,
+          text: e.target.value,
         }
       })
     }
@@ -100,6 +104,13 @@ class PopupEditMenu extends Component {
         isDisabled: true,
       },
     })
+  }
+
+  handleEditDescription = () => {
+    const { editDescription, cardId, ...list } = this.props;
+    const { description } = this.state;
+
+    editDescription(list._id, cardId, description.text);
   }
 
   render() {
@@ -133,7 +144,7 @@ class PopupEditMenu extends Component {
               name="description"
               value={description.text}
             />
-            <Button disabled={description.isDisabled} color="primary" variant="contained">
+            <Button onClick={this.handleEditDescription} disabled={description.isDisabled} color="primary" variant="contained">
               Save
             </Button>
           </div>

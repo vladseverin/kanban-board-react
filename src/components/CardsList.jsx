@@ -105,7 +105,7 @@ class CardsList extends Component {
   }
 
   render() {
-    const { classes, title, cards, isOpen, handleClose, removeCard, editListTitle, ...list } = this.props;
+    const { classes, title, cards, isOpen, handleClose, removeCard, editListTitle, editDescription, ...list } = this.props;
     const { inputText } = this.state;
 
     return (
@@ -121,6 +121,7 @@ class CardsList extends Component {
           cards && cards.length ? (
             cards.map((card) => 
               <Card
+                editDescription={editDescription}
                 removeCard={removeCard}
                 task={card.cardName} 
                 key={card.cardId}
