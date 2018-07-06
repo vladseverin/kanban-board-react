@@ -57,6 +57,12 @@ const styles = theme => ({
 });
 
 class PopupEditMenu extends Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+    window.ref = this.myRef.current
+  }
+
   state = {
     description: {
       isDisabled: true,
@@ -87,6 +93,7 @@ class PopupEditMenu extends Component {
       },
       message: {
         isDisabled: true,
+        text: '',
       },
     })
   }
@@ -98,18 +105,24 @@ class PopupEditMenu extends Component {
     editDescription(list._id, cardId, description.text);
   }
 
+  handleSendComment = () => {
+    const { addComment, cardId, ...list } = this.props;
+    const { message } = this.state;
+
+    addComment(list._id, cardId, message.text);
+  }
+
   render() {
     const { classes, onPopupClose, popupOpen, task, username, comments, ...list} = this.props;
     const { description, message } = this.state;
-    
+
     return (
       <Dialog
         open={popupOpen}
         onClose={onPopupClose}
       >
-        <div className={classes.wrapInnerPopup}>
-
-          <div className={classes.headerPopup}>
+        <div ref={this.myRef} className={classes.wrapInnerPopup} >
+          <div className={classes.headerPopup} >
             <Typography variant="display1" className={classes.mainTitle}>
               <Web className={classes.customStyle} /> {task && task[0].toUpperCase() + task.slice(1)}
             </Typography>
@@ -145,7 +158,7 @@ class PopupEditMenu extends Component {
               value={message.text}
               name="message"
             />
-            <Button disabled={message.isDisabled} color="primary" variant="contained">
+            <Button onClick={this.handleSendComment} disabled={message.isDisabled} color="primary" variant="contained">
               Send
             </Button>
           </div>

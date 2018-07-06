@@ -74,7 +74,7 @@ class Board extends Component {
   }
 
   render() {
-    const { classes, open, data, addList, addCard, editListTitle, removeCard, editDescription} = this.props;
+    const { classes, open, data, addList, addCard, editListTitle, removeCard, editDescription, addComment } = this.props;
     const { openTextariaInputId } = this.state;
 
     return (
@@ -92,6 +92,7 @@ class Board extends Component {
                 data.map((list) => 
                   <Grid item xs={12} sm={6} md={4} lg={3} key={list._id} className={classes.gridSelf} >
                     <CardsList 
+                      addComment={addComment}
                       editDescription={editDescription}
                       addCard={addCard}
                       editListTitle={editListTitle}
