@@ -94,6 +94,13 @@ const byIds = (state = initialState.byIds, action) => {
     case types.ADD_COMMENT_CARD:
       return {
         ...state,
+        [action.payload.listId]: {
+          ...state[action.payload.listId],
+          cards: [
+            ...state[action.payload.listId].cards
+              .map(c => card(c, action)),
+          ]
+        }
       };
     case types.REMOVE_COMMENT_CARD:
       return {
