@@ -126,6 +126,7 @@ class CardsList extends Component {
                 task={card.cardName} 
                 key={card.cardId}
                 description={card.description}
+                comments={card.comments}
                 {...list}
                 {...card}
               />

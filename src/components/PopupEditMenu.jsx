@@ -9,6 +9,7 @@ import Web from '@material-ui/icons/Web';
 import Description from '@material-ui/icons/Description';
 import Comment from '@material-ui/icons/Comment';
 
+import CommentCard from './CommentCard';
 
 const styles = theme => ({
   wrapInnerPopup: {
@@ -98,7 +99,7 @@ class PopupEditMenu extends Component {
   }
 
   render() {
-    const { classes, onPopupClose, popupOpen, task, username, ...list} = this.props;
+    const { classes, onPopupClose, popupOpen, task, username, comments, ...list} = this.props;
     const { description, message } = this.state;
     
     return (
@@ -149,6 +150,17 @@ class PopupEditMenu extends Component {
             </Button>
           </div>
 
+          {comments.map((c) => {
+            return (
+              <CommentCard 
+                key={c._id}
+                comment={c.comment}
+                sender={c.sender}
+                data={c.date} 
+              />
+            );
+          })}
+         
           Creator: {username}
 
           <DialogActions>
