@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import PopupEditMenu from './PopupEditMenu';
 
 import Description from '@material-ui/icons/Description';
+import Comment from '@material-ui/icons/Comment';
 
 const styles = theme => ({
   listCards: {
@@ -48,6 +49,12 @@ const styles = theme => ({
   },
   isDescription: {
     fontSize: 18,
+  },
+  wrapIcoComments: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    fontSize: '15px',
   }
 });
 
@@ -87,6 +94,11 @@ class Card extends Component {
     const { anchorEl, popupOpen } = this.state;
     const username = localStorage.getItem('KANABAN_TOKEN');
 
+    const isComments = <div className={classes.wrapIcoComments}>  
+      <Comment className={classes.isDescription} />
+      {comments.length} 
+    </div>;
+
     return (
       <div className={classes.listCards} >
         <Paper className={classes.listCard} >
@@ -108,6 +120,7 @@ class Card extends Component {
           
           <div className={classes.byInfo}>
             {description && <Description className={classes.isDescription}/> }
+            {comments.length !== 0 && isComments}
             <div className={classes.creator}>
               ...created by {username}
             </div>
