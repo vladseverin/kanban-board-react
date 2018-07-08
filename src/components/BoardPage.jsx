@@ -31,7 +31,7 @@ class BoardPage extends React.Component {
   };
  
   render() {
-    const { classes, allIds, byIds, addList, addCard, editListTitle, removeCard, logout, editDescription, addComment } = this.props;
+    const { classes, allIds, byIds, addList, addCard, editListTitle, removeCard, logout, editDescription, addComment, removeComment } = this.props;
     const { open } = this.state;
     const arrayLists = allIds.map((id) => byIds[id])
     
@@ -55,6 +55,7 @@ class BoardPage extends React.Component {
             removeCard={removeCard}
             editDescription={editDescription}
             addComment={addComment}
+            removeComment={removeComment}
           />
         </div>
     );

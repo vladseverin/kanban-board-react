@@ -70,8 +70,14 @@ class CommentCard extends Component {
     });
   }
 
+  handleOnRemoveComment = () => {
+    const { removeComment, cardId, commentId, ...list } = this.props;
+
+    removeComment(list._id, cardId, commentId);
+  }
+
   render() {
-    const { key, comment, sender, data, classes } = this.props;
+    const { comment, sender, data, classes } = this.props;
     const { isOver } = this.state;
 
     return (
@@ -93,7 +99,7 @@ class CommentCard extends Component {
           onMouseOver={this.handleOnMouseOver}
           className={classnames(classes.remove, isOver ? classes.show : null)}
         >
-          <Close />
+          <Close onClick={this.handleOnRemoveComment} />
         </div>
 
         <div className={classes.comment}>

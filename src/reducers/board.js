@@ -8,7 +8,21 @@ const initialState = {
     '0': {
       nameList: 'TODO',
       _id: '0',
-      cards: [],
+      cards: [
+        // {
+        //   cardId: "1",
+        //   cardName: "asdfasdf",
+        //   comments: [
+        //     {
+        //       _id: '0',
+        //       comment: 'sdafds',
+        //       date: '2018-07-08 14:24:43',
+        //       sender: 'dasfsdf',
+        //     }
+        //   ],
+        //   description: "asdfas",
+        // }
+      ],
     },
     '1': {
       nameList: 'In Progress',
@@ -105,6 +119,13 @@ const byIds = (state = initialState.byIds, action) => {
     case types.REMOVE_COMMENT_CARD:
       return {
         ...state,
+        [action.payload.listId]: {
+          ...state[action.payload.listId],
+          cards: [
+            ...state[action.payload.listId].cards
+              .map(c => card(c, action)),
+          ]
+        }
       };
     default:
       return state;

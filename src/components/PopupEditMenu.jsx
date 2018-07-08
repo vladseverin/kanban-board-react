@@ -113,7 +113,7 @@ class PopupEditMenu extends Component {
   }
 
   render() {
-    const { classes, onPopupClose, popupOpen, task, username, comments, ...list} = this.props;
+    const { classes, onPopupClose, popupOpen, task, username, comments, removeComment, cardId, ...list} = this.props;
     const { description, message } = this.state;
 
     return (
@@ -167,9 +167,14 @@ class PopupEditMenu extends Component {
             return (
               <CommentCard 
                 key={c._id}
+                commentId={c._id}
                 comment={c.comment}
                 sender={c.sender}
                 data={c.date} 
+                removeComment={removeComment}
+                cardId={cardId}
+                {...c}
+                {...list}
               />
             );
           })}

@@ -34,7 +34,8 @@ const card = (state, action) => {
         ('0' + date.getHours()).slice(-2) + ":" +
         ('0' + date.getMinutes()).slice(-2) + ":" +
         ('0' + date.getSeconds()).slice(-2);
-      commentId++;
+
+      commentId = (+commentId + 1) + '';
 
       return {
         ...state,
@@ -46,6 +47,20 @@ const card = (state, action) => {
             sender: localStorage.getItem("KANABAN_TOKEN"),
             date: time,
           }
+        ],
+      };
+    case types.REMOVE_COMMENT_CARD:
+      if (state.cardId !== action.payload.cardId) {
+        return state;
+      };
+
+      return {
+        ...state,
+        comments: [
+          ...state.comments
+            .filter(remove => 
+              remove._id !== action.payload.commentId
+            ),
         ],
       };
     default:

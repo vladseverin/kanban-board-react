@@ -7,12 +7,13 @@ import './index.css';
 import 'typeface-roboto';
 import configureStore  from './store/index';
 
-import { addComment } from './actions/board';
+import { addComment, removeComment } from './actions/board';
 
 const store = configureStore();
 
 window.store = store;
 window.addComment = addComment;
+window.removeComment = removeComment;
 
 const render = (Component) => {
   ReactDOM.render(

@@ -17,6 +17,7 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
   editDescription: (listId, cardId, description) => dispatch(editDescription(listId, cardId, description)),
   addComment: (listId, cardId, comment) => dispatch(addComment(listId, cardId, comment)),
+  removeComment: (listId, cardId, commentId) => dispatch(removeComment(listId, cardId, commentId))
 });
 
 export default connect(

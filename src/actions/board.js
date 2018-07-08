@@ -42,10 +42,10 @@ export const addComment = (listId, cardId, comment) => {
   }
 }
 
-export const removeComment = (listId, cardId, description) => {
+export const removeComment = (listId, cardId, commentId) => {
   return {
     type: types.REMOVE_COMMENT_CARD,
-    payload: { listId, cardId, description }
+    payload: { listId, cardId, commentId }
   }
 }
 
