@@ -1,25 +1,25 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import BoardHeader from './BoardHeader';
-import BoardSidebar from './BoardSidebar';
-import Board from './Board';
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import BoardHeader from "./BoardHeader";
+import BoardSidebar from "./BoardSidebar";
+import Board from "./Board";
 
 const styles = theme => ({
   appFrame: {
     flexGrow: 1,
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    height: '100%',
+    height: "100%",
     zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
-  },
+    overflow: "hidden",
+    position: "relative",
+    display: "flex",
+    width: "100%"
+  }
 });
 
 class BoardPage extends React.Component {
   state = {
-    open: false,
+    open: false
   };
 
   handleDrawerOpen = () => {
@@ -29,35 +29,44 @@ class BoardPage extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
- 
+
   render() {
-    const { classes, allIds, byIds, addList, addCard, editListTitle, removeCard, logout, editDescription, addComment, removeComment } = this.props;
+    const {
+      classes,
+      allIds,
+      byIds,
+      addList,
+      addCard,
+      editListTitle,
+      removeCard,
+      logout,
+      editDescription,
+      addComment,
+      removeComment
+    } = this.props;
     const { open } = this.state;
-    const arrayLists = allIds.map((id) => byIds[id])
-    
+    const arrayLists = allIds.map(id => byIds[id]);
+
     return (
-        <div className={classes.appFrame}>
-          <BoardHeader 
-            handleOpen={() => this.handleDrawerOpen()} 
-            open={open} 
-          />
-          <BoardSidebar 
-            handleClose={() => this.handleDrawerClose()}
-            open={open}
-            logout={logout}
-          />
-          <Board 
-            open={open} 
-            data={arrayLists} 
-            addList={addList} 
-            addCard={addCard}
-            editListTitle={editListTitle}
-            removeCard={removeCard}
-            editDescription={editDescription}
-            addComment={addComment}
-            removeComment={removeComment}
-          />
-        </div>
+      <div className={classes.appFrame}>
+        <BoardHeader handleOpen={() => this.handleDrawerOpen()} open={open} />
+        <BoardSidebar
+          handleClose={() => this.handleDrawerClose()}
+          open={open}
+          logout={logout}
+        />
+        <Board
+          open={open}
+          data={arrayLists}
+          addList={addList}
+          addCard={addCard}
+          editListTitle={editListTitle}
+          removeCard={removeCard}
+          editDescription={editDescription}
+          addComment={addComment}
+          removeComment={removeComment}
+        />
+      </div>
     );
   }
 }

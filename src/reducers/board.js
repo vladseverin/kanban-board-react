@@ -1,46 +1,32 @@
-import { combineReducers } from 'redux'
-import * as types from '../constants';
-import card from './card';
+import { combineReducers } from "redux";
+import * as types from "../constants";
+import card from "./card";
 
 const initialState = {
-  allIds: ['0', '1', '2', '3'],
+  allIds: ["0", "1", "2", "3"],
   byIds: {
-    '0': {
-      nameList: 'TODO',
-      _id: '0',
-      cards: [
-        // {
-        //   cardId: "1",
-        //   cardName: "asdfasdf",
-        //   comments: [
-        //     {
-        //       _id: '0',
-        //       comment: 'sdafds',
-        //       date: '2018-07-08 14:24:43',
-        //       sender: 'dasfsdf',
-        //     }
-        //   ],
-        //   description: "asdfas",
-        // }
-      ],
+    "0": {
+      nameList: "TODO",
+      _id: "0",
+      cards: []
     },
-    '1': {
-      nameList: 'In Progress',
-      _id: '1',
-      cards: [],
+    "1": {
+      nameList: "In Progress",
+      _id: "1",
+      cards: []
     },
-    '2': {
-      nameList: 'Testing',
-      _id: '2',
-      cards: [],
+    "2": {
+      nameList: "Testing",
+      _id: "2",
+      cards: []
     },
-    '3': {
-      nameList: 'Done',
-      _id: '3',
-      cards: [],
-    },
+    "3": {
+      nameList: "Done",
+      _id: "3",
+      cards: []
+    }
   }
-}
+};
 
 const allIds = (state = initialState.allIds, action) => {
   switch (action.type) {
@@ -59,7 +45,7 @@ const byIds = (state = initialState.byIds, action) => {
         [action.payload.listId]: {
           _id: action.payload.listId,
           nameList: action.payload.name,
-          cards: [],
+          cards: []
         }
       };
     case types.EDIT_LIST_TITLE:
@@ -67,7 +53,7 @@ const byIds = (state = initialState.byIds, action) => {
         ...state,
         [action.payload.listId]: {
           ...state[action.payload.listId],
-          nameList: action.payload.title,
+          nameList: action.payload.title
         }
       };
     case types.ADD_CARD:
@@ -77,22 +63,21 @@ const byIds = (state = initialState.byIds, action) => {
           ...state[action.payload.listId],
           cards: [
             ...state[action.payload.listId].cards,
-            card(undefined, action),
+            card(undefined, action)
           ]
         }
       };
     case types.REMOVE_CARD:
       return {
-        ...state, 
+        ...state,
         [action.payload.listId]: {
           ...state[action.payload.listId],
           cards: [
-            ...state[action.payload.listId].cards
-              .filter(remove => 
-                card(remove, action)
-              ),
-          ],
-        },
+            ...state[action.payload.listId].cards.filter(remove =>
+              card(remove, action)
+            )
+          ]
+        }
       };
     case types.EDIT_DESCRIPTION_CARD:
       return {
@@ -100,8 +85,7 @@ const byIds = (state = initialState.byIds, action) => {
         [action.payload.listId]: {
           ...state[action.payload.listId],
           cards: [
-            ...state[action.payload.listId].cards
-              .map(c => card(c, action)),
+            ...state[action.payload.listId].cards.map(c => card(c, action))
           ]
         }
       };
@@ -111,8 +95,7 @@ const byIds = (state = initialState.byIds, action) => {
         [action.payload.listId]: {
           ...state[action.payload.listId],
           cards: [
-            ...state[action.payload.listId].cards
-              .map(c => card(c, action)),
+            ...state[action.payload.listId].cards.map(c => card(c, action))
           ]
         }
       };
@@ -122,15 +105,14 @@ const byIds = (state = initialState.byIds, action) => {
         [action.payload.listId]: {
           ...state[action.payload.listId],
           cards: [
-            ...state[action.payload.listId].cards
-              .map(c => card(c, action)),
+            ...state[action.payload.listId].cards.map(c => card(c, action))
           ]
         }
       };
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   allIds,

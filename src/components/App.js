@@ -1,22 +1,22 @@
-import React from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import WeclomePage from '../containers/WelcomePage';
-import BoardPage from '../containers/BoardPage';
+import React from "react";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import WeclomePage from "../containers/WelcomePage";
+import BoardPage from "../containers/BoardPage";
 
-import history from '../utils/history';
+import history from "../utils/history";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#2d2d2d',
-      contrastText: '#fff',
+      main: "#2d2d2d",
+      contrastText: "#fff"
     },
     secondary: {
-      main: '#2d2d2d',
-      contrastText: '#fff',
+      main: "#2d2d2d",
+      contrastText: "#fff"
     }
-  },
+  }
 });
 
 const App = () => (

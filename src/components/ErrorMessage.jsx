@@ -1,11 +1,11 @@
-import React from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
+import React from "react";
+import Snackbar from "@material-ui/core/Snackbar";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 class ErrorMessage extends React.Component {
   state = {
-    open: false,
+    open: false
   };
 
   handleCloseSnackbar = (event, reason) => {
@@ -28,8 +28,8 @@ class ErrorMessage extends React.Component {
     return (
       <Snackbar
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
+          vertical: "bottom",
+          horizontal: "left"
         }}
         open={this.state.open}
         autoHideDuration={6000}
@@ -43,7 +43,7 @@ class ErrorMessage extends React.Component {
             onClick={this.handleCloseSnackbar}
           >
             <CloseIcon />
-          </IconButton>,
+          </IconButton>
         ]}
       />
     );
