@@ -24,9 +24,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "format": "prettier-eslint --write \"**/*.{js,jsx,json}\""
+    "format": "prettier-eslint --write \"**/*.{js,jsx,json}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "lint:fix": "yarn lint -- --fix"
   },
   "devDependencies": {
+    "babel-eslint": "^8.2.5",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^17.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-react": "^7.10.0",
     "prettier-eslint-cli": "^4.7.1"
   }
 }

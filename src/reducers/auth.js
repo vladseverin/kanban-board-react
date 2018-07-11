@@ -1,27 +1,27 @@
-import * as types from "../constants/auth";
+import * as types from '../constants/auth';
 
-const token = localStorage.getItem("KANABAN_TOKEN");
+const token = localStorage.getItem('KANABAN_TOKEN');
 
 const initialState = {
   isAuthenticated: !!token,
   username: null,
-  token: token
+  token,
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case types.LOGIN:
       return {
         ...state,
         isAuthenticated: true,
-        username: action.payload
+        username: action.payload,
       };
     case types.LOGOUT:
       return {
         ...state,
         isAuthenticated: false,
         username: null,
-        token: ""
+        token: '',
       };
     default:
       return state;

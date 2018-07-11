@@ -1,31 +1,31 @@
-import { combineReducers } from "redux";
-import * as types from "../constants";
-import card from "./card";
+import { combineReducers } from 'redux';
+import * as types from '../constants';
+import card from './card';
 
 const initialState = {
-  allIds: ["0", "1", "2", "3"],
+  allIds: ['0', '1', '2', '3'],
   byIds: {
-    "0": {
-      nameList: "TODO",
-      _id: "0",
-      cards: []
+    0: {
+      nameList: 'TODO',
+      _id: '0',
+      cards: [],
     },
-    "1": {
-      nameList: "In Progress",
-      _id: "1",
-      cards: []
+    1: {
+      nameList: 'In Progress',
+      _id: '1',
+      cards: [],
     },
-    "2": {
-      nameList: "Testing",
-      _id: "2",
-      cards: []
+    2: {
+      nameList: 'Testing',
+      _id: '2',
+      cards: [],
     },
-    "3": {
-      nameList: "Done",
-      _id: "3",
-      cards: []
-    }
-  }
+    3: {
+      nameList: 'Done',
+      _id: '3',
+      cards: [],
+    },
+  },
 };
 
 const allIds = (state = initialState.allIds, action) => {
@@ -45,69 +45,56 @@ const byIds = (state = initialState.byIds, action) => {
         [action.payload.listId]: {
           _id: action.payload.listId,
           nameList: action.payload.name,
-          cards: []
-        }
+          cards: [],
+        },
       };
     case types.EDIT_LIST_TITLE:
       return {
         ...state,
         [action.payload.listId]: {
           ...state[action.payload.listId],
-          nameList: action.payload.title
-        }
+          nameList: action.payload.title,
+        },
       };
     case types.ADD_CARD:
       return {
         ...state,
         [action.payload.listId]: {
           ...state[action.payload.listId],
-          cards: [
-            ...state[action.payload.listId].cards,
-            card(undefined, action)
-          ]
-        }
+          cards: [...state[action.payload.listId].cards, card(undefined, action)],
+        },
       };
     case types.REMOVE_CARD:
       return {
         ...state,
         [action.payload.listId]: {
           ...state[action.payload.listId],
-          cards: [
-            ...state[action.payload.listId].cards.filter(remove =>
-              card(remove, action)
-            )
-          ]
-        }
+          cards: [...state[action.payload.listId].cards.filter(remove => card(remove, action))],
+        },
       };
     case types.EDIT_DESCRIPTION_CARD:
       return {
         ...state,
         [action.payload.listId]: {
           ...state[action.payload.listId],
-          cards: [
-            ...state[action.payload.listId].cards.map(c => card(c, action))
-          ]
-        }
+          cards: [...state[action.payload.listId].cards.map(c => card(c, action))],
+        },
       };
     case types.ADD_COMMENT_CARD:
       return {
         ...state,
         [action.payload.listId]: {
           ...state[action.payload.listId],
-          cards: [
-            ...state[action.payload.listId].cards.map(c => card(c, action))
-          ]
-        }
+          cards: [...state[action.payload.listId].cards.map(c => card(c, action))],
+        },
       };
     case types.REMOVE_COMMENT_CARD:
       return {
         ...state,
         [action.payload.listId]: {
           ...state[action.payload.listId],
-          cards: [
-            ...state[action.payload.listId].cards.map(c => card(c, action))
-          ]
-        }
+          cards: [...state[action.payload.listId].cards.map(c => card(c, action))],
+        },
       };
     default:
       return state;
@@ -116,5 +103,5 @@ const byIds = (state = initialState.byIds, action) => {
 
 export default combineReducers({
   allIds,
-  byIds
+  byIds,
 });
