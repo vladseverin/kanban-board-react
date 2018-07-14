@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BoardHeader from './BoardHeader';
 import BoardSidebar from './BoardSidebar';
@@ -18,6 +19,25 @@ const styles = () => ({
 });
 
 class BoardPage extends React.Component {
+  static propTypes = {
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    allIds: PropTypes.arrayOf(PropTypes.string),
+    byIds: PropTypes.objectOf(PropTypes.object),
+    addList: PropTypes.func.isRequired,
+    addCard: PropTypes.func.isRequired,
+    editListTitle: PropTypes.func.isRequired,
+    removeCard: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    editDescription: PropTypes.func.isRequired,
+    addComment: PropTypes.func.isRequired,
+    removeComment: PropTypes.func.isRequired,
+  }
+
+  static defaultProps = {
+    allIds: [],
+    byIds: {},
+  };
+
   state = {
     open: false,
   };

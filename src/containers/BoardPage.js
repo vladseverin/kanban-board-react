@@ -23,7 +23,9 @@ const mapDispatchToProps = dispatch => ({
   editListTitle: (listId, title) => dispatch(editListTitle(listId, title)),
   removeCard: (listId, cardId) => dispatch(removeCard(listId, cardId)),
   logout: () => dispatch(logout()),
-  editDescription: (listId, cardId, description) => dispatch(editDescription(listId, cardId, description)),
+  editDescription: (listId, cardId, description) => dispatch(
+    editDescription(listId, cardId, description),
+  ),
   addComment: (listId, cardId, comment) => dispatch(addComment(listId, cardId, comment)),
   removeComment: (listId, cardId, commentId) => dispatch(removeComment(listId, cardId, commentId)),
 });
