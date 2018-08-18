@@ -9,7 +9,6 @@ const subscribeOnStore = (store) => {
   store.subscribe(() => saveState(store.getState()));
 };
 
-
 export default function configureStore() {
   if (process.env.NODE_ENV === 'production') {
     const store = createStore(rootReducer, persistState);

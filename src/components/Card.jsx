@@ -136,8 +136,8 @@ Delete
             {description && <Description className={classes.isDescription} />}
             {comments.length !== 0 && isComments}
             <div className={classes.creator}>
-              ...created by
-              {username}
+              {/* eslint-disable-next-line */}
+              ...created by {username}
             </div>
           </div>
 
