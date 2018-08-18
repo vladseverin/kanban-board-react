@@ -11,5 +11,7 @@ module.exports = {
       "consistent-return": "off",
       "react/jsx-no-bind": "off",
       "react/prop-types": "off",
+      "linebreak-style": "off",
+      "no-case-declarations": "off",
     }
 };
