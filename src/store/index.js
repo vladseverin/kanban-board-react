@@ -5,14 +5,20 @@ import { loadState, saveState } from '../utils/localStorage';
 
 const persistState = loadState();
 
+const subscribeOnStore = (store) => {
+  store.subscribe(() => saveState(store.getState()));
+};
+
+
 export default function configureStore() {
   if (process.env.NODE_ENV === 'production') {
-    return createStore(rootReducer, persistState);
+    const store = createStore(rootReducer, persistState);
+    subscribeOnStore(store);
+    return store;
   }
 
   const store = createStore(rootReducer, persistState, applyMiddleware(logger));
-  window.store = store;
-  store.subscribe(() => saveState(store.getState()));
+  subscribeOnStore(store);
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
