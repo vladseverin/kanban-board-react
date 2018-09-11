@@ -1,3 +1,4 @@
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import BoardPage from '../components/BoardPage';
 import {
@@ -17,18 +18,21 @@ const mapStateToProps = state => ({
   byIds: state.board.byIds,
 });
 
-const mapDispatchToProps = dispatch => ({
-  addList: (listId, name) => dispatch(addList(listId, name)),
-  addCard: (listId, cardId, cardName) => dispatch(addCard(listId, cardId, cardName)),
-  editListTitle: (listId, title) => dispatch(editListTitle(listId, title)),
-  removeCard: (listId, cardId) => dispatch(removeCard(listId, cardId)),
-  logout: () => dispatch(logout()),
-  editDescription: (listId, cardId, description) => dispatch(
-    editDescription(listId, cardId, description),
-  ),
-  addComment: (listId, cardId, comment) => dispatch(addComment(listId, cardId, comment)),
-  removeComment: (listId, cardId, commentId) => dispatch(removeComment(listId, cardId, commentId)),
-});
+const mapDispatchToProps = dispatch => (
+  bindActionCreators(
+    {
+      addList,
+      addCard,
+      editListTitle,
+      removeCard,
+      logout,
+      editDescription,
+      addComment,
+      removeComment,
+    },
+    dispatch,
+  )
+);
 
 export default connect(
   mapStateToProps,
