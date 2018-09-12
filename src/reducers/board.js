@@ -1,9 +1,21 @@
 import { combineReducers } from 'redux';
-import * as types from '../constants';
+// eslint-disable-next-line
 import card from './card';
 
+export const ADD_LIST = Symbol('board/ADD_LIST');
+export const REMOVE_LIST = Symbol('board/REMOVE_LIST');
+export const EDIT_LIST_TITLE = Symbol('board/EDIT_LIST_TITLE');
+
+export const ADD_CARD = Symbol('board/ADD_CARD');
+export const REMOVE_CARD = Symbol('board/REMOVE_CARD');
+export const EDIT_CARD_TITLE = Symbol('board/EDIT_CARD_TITLE');
+
+export const EDIT_DESCRIPTION_CARD = Symbol('popup/EDIT_DESCRIPTION_CARD');
+export const ADD_COMMENT_CARD = Symbol('popup/ADD_COMMENT_CARD');
+export const REMOVE_COMMENT_CARD = Symbol('popup/REMOVE_COMMENT_CARD');
+
 const initialState = {
-  allIds: ['0', '1', '2', '3'],
+  allIds: ['0', '1', '2', '3', '4'],
   byIds: {
     0: {
       nameList: 'TODO',
@@ -28,77 +40,108 @@ const initialState = {
   },
 };
 
+export const addList = (listId, name) => ({
+  type: ADD_LIST,
+  payload: { listId, name },
+});
+
+export const addCard = (listId, cardId, cardName) => ({
+  type: ADD_CARD,
+  payload: { listId, cardId, cardName },
+});
+
+export const editListTitle = (listId, title) => ({
+  type: EDIT_LIST_TITLE,
+  payload: { listId, title },
+});
+
+export const removeCard = (listId, cardId) => ({
+  type: REMOVE_CARD,
+  payload: { listId, cardId },
+});
+
+export const editDescription = (listId, cardId, description) => ({
+  type: EDIT_DESCRIPTION_CARD,
+  payload: { listId, cardId, description },
+});
+
+export const addComment = (listId, cardId, comment) => ({
+  type: ADD_COMMENT_CARD,
+  payload: { listId, cardId, comment },
+});
+
+export const removeComment = (listId, cardId, commentId) => ({
+  type: REMOVE_COMMENT_CARD,
+  payload: { listId, cardId, commentId },
+});
+
+const allIdsMap = {
+  [ADD_LIST]: (state, action) => (
+    [...state, action.payload.listId]
+  ),
+};
+
+const byIdsMap = {
+  [ADD_LIST]: (state, action) => ({
+    ...state,
+    [action.payload.listId]: {
+      _id: action.payload.listId,
+      nameList: action.payload.name,
+      cards: [],
+    },
+  }),
+  [EDIT_LIST_TITLE]: (state, action) => ({
+    ...state,
+    [action.payload.listId]: {
+      ...state[action.payload.listId],
+      nameList: action.payload.title,
+    },
+  }),
+  [ADD_CARD]: (state, action) => ({
+    ...state,
+    [action.payload.listId]: {
+      ...state[action.payload.listId],
+      cards: [...state[action.payload.listId].cards, card(undefined, action)],
+    },
+  }),
+  [REMOVE_CARD]: (state, action) => ({
+    ...state,
+    [action.payload.listId]: {
+      ...state[action.payload.listId],
+      cards: [...state[action.payload.listId].cards.filter(remove => card(remove, action))],
+    },
+  }),
+  [EDIT_DESCRIPTION_CARD]: (state, action) => ({
+    ...state,
+    [action.payload.listId]: {
+      ...state[action.payload.listId],
+      cards: [...state[action.payload.listId].cards.map(c => card(c, action))],
+    },
+  }),
+  [ADD_COMMENT_CARD]: (state, action) => ({
+    ...state,
+    [action.payload.listId]: {
+      ...state[action.payload.listId],
+      cards: [...state[action.payload.listId].cards.map(c => card(c, action))],
+    },
+  }),
+  [REMOVE_COMMENT_CARD]: (state, action) => ({
+    ...state,
+    [action.payload.listId]: {
+      ...state[action.payload.listId],
+      cards: [...state[action.payload.listId].cards.map(c => card(c, action))],
+    },
+  }),
+};
+
 const allIds = (state = initialState.allIds, action) => {
-  switch (action.type) {
-    case types.ADD_LIST:
-      return [...state, action.payload.listId];
-    default:
-      return state;
-  }
+  const reduceFn = allIdsMap[action.type];
+  return reduceFn ? reduceFn(state, action) : state;
 };
 
 const byIds = (state = initialState.byIds, action) => {
-  switch (action.type) {
-    case types.ADD_LIST:
-      return {
-        ...state,
-        [action.payload.listId]: {
-          _id: action.payload.listId,
-          nameList: action.payload.name,
-          cards: [],
-        },
-      };
-    case types.EDIT_LIST_TITLE:
-      return {
-        ...state,
-        [action.payload.listId]: {
-          ...state[action.payload.listId],
-          nameList: action.payload.title,
-        },
-      };
-    case types.ADD_CARD:
-      return {
-        ...state,
-        [action.payload.listId]: {
-          ...state[action.payload.listId],
-          cards: [...state[action.payload.listId].cards, card(undefined, action)],
-        },
-      };
-    case types.REMOVE_CARD:
-      return {
-        ...state,
-        [action.payload.listId]: {
-          ...state[action.payload.listId],
-          cards: [...state[action.payload.listId].cards.filter(remove => card(remove, action))],
-        },
-      };
-    case types.EDIT_DESCRIPTION_CARD:
-      return {
-        ...state,
-        [action.payload.listId]: {
-          ...state[action.payload.listId],
-          cards: [...state[action.payload.listId].cards.map(c => card(c, action))],
-        },
-      };
-    case types.ADD_COMMENT_CARD:
-      return {
-        ...state,
-        [action.payload.listId]: {
-          ...state[action.payload.listId],
-          cards: [...state[action.payload.listId].cards.map(c => card(c, action))],
-        },
-      };
-    case types.REMOVE_COMMENT_CARD:
-      return {
-        ...state,
-        [action.payload.listId]: {
-          ...state[action.payload.listId],
-          cards: [...state[action.payload.listId].cards.map(c => card(c, action))],
-        },
-      };
-    default:
-      return state;
-  }
+  const reduceFn = byIdsMap[action.type];
+  return reduceFn ? reduceFn(state, action) : state;
 };
 
 export default combineReducers({

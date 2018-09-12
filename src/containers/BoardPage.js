@@ -9,8 +9,8 @@ import {
   editDescription,
   addComment,
   removeComment,
-} from '../actions/board';
-import { logout } from '../actions/auth';
+} from '../reducers/board';
+import { logout } from '../reducers/auth';
 
 const mapStateToProps = state => ({
   username: state.auth.username,

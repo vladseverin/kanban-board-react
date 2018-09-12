@@ -1,19 +1,26 @@
-import * as types from '../constants';
+// eslint-disable-next-line
+import {
+  ADD_CARD,
+  REMOVE_CARD,
+  EDIT_DESCRIPTION_CARD,
+  ADD_COMMENT_CARD,
+  REMOVE_COMMENT_CARD,
+} from './board';
 
 let commentId = 0;
 
 const card = (state, action) => {
   switch (action.type) {
-    case types.ADD_CARD:
+    case ADD_CARD:
       return {
         cardId: action.payload.cardId,
         cardName: action.payload.cardName,
         description: '',
         comments: [],
       };
-    case types.REMOVE_CARD:
+    case REMOVE_CARD:
       return state.cardId !== action.payload.cardId;
-    case types.EDIT_DESCRIPTION_CARD:
+    case EDIT_DESCRIPTION_CARD:
       if (state.cardId !== action.payload.cardId) {
         return state;
       }
@@ -22,7 +29,7 @@ const card = (state, action) => {
         ...state,
         description: action.payload.description,
       };
-    case types.ADD_COMMENT_CARD:
+    case ADD_COMMENT_CARD:
       if (state.cardId !== action.payload.cardId) {
         return state;
       }
@@ -48,7 +55,7 @@ const card = (state, action) => {
           },
         ],
       };
-    case types.REMOVE_COMMENT_CARD:
+    case REMOVE_COMMENT_CARD:
       if (state.cardId !== action.payload.cardId) {
         return state;
       }
