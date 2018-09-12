@@ -15,7 +15,7 @@ export const ADD_COMMENT_CARD = Symbol('popup/ADD_COMMENT_CARD');
 export const REMOVE_COMMENT_CARD = Symbol('popup/REMOVE_COMMENT_CARD');
 
 const initialState = {
-  allIds: ['0', '1', '2', '3', '4'],
+  allIds: ['0', '1', '2', '3'],
   byIds: {
     0: {
       nameList: 'TODO',
