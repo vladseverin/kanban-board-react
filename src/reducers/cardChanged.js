@@ -10,7 +10,7 @@ import {
 
 let commentId = 0;
 
-const actionsMap = {
+const cardMap = {
   [ADD_CARD]: (state, action) => ({
     cardId: action.payload.cardId,
     cardName: action.payload.cardName,
@@ -69,7 +69,7 @@ const actionsMap = {
 };
 
 function card(state, action) {
-  const reduceFn = actionsMap[action.type];
+  const reduceFn = cardMap[action.type];
   return reduceFn ? reduceFn(state, action) : state;
 }
 

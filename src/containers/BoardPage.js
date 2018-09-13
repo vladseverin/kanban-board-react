@@ -16,6 +16,7 @@ const mapStateToProps = state => ({
   username: state.auth.username,
   allIds: state.board.allIds,
   byIds: state.board.byIds,
+  boardList: state.board,
 });
 
 const mapDispatchToProps = dispatch => (

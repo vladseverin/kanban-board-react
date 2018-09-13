@@ -13,5 +13,9 @@ module.exports = {
       "react/prop-types": "off",
       "linebreak-style": "off",
       "no-case-declarations": "off",
+      "no-confusing-arrow": "off",
+      "arrow-parens": "off",
+      "arrow-body-style": "off",
+      "no-param-reassign": "off",
     }
 };

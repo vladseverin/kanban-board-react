@@ -21,8 +21,8 @@ const styles = () => ({
 class BoardPage extends React.Component {
   static propTypes = {
     classes: PropTypes.objectOf(PropTypes.string).isRequired,
-    allIds: PropTypes.arrayOf(PropTypes.string),
-    byIds: PropTypes.objectOf(PropTypes.object),
+    // allIds: PropTypes.arrayOf(PropTypes.string),
+    // byIds: PropTypes.objectOf(PropTypes.object),
     addList: PropTypes.func.isRequired,
     addCard: PropTypes.func.isRequired,
     editListTitle: PropTypes.func.isRequired,
@@ -34,8 +34,8 @@ class BoardPage extends React.Component {
   }
 
   static defaultProps = {
-    allIds: [],
-    byIds: {},
+    // allIds: [],
+    // byIds: {},
   };
 
   state = {
@@ -53,8 +53,8 @@ class BoardPage extends React.Component {
   render() {
     const {
       classes,
-      allIds,
-      byIds,
+      // allIds,
+      // byIds,
       addList,
       addCard,
       editListTitle,
@@ -63,9 +63,9 @@ class BoardPage extends React.Component {
       editDescription,
       addComment,
       removeComment,
+      boardList,
     } = this.props;
     const { open } = this.state;
-    const arrayLists = allIds.map(id => byIds[id]);
 
     return (
       <div className={classes.appFrame}>
@@ -73,7 +73,7 @@ class BoardPage extends React.Component {
         <BoardSidebar handleClose={() => this.handleDrawerClose()} open={open} logout={logout} />
         <Board
           open={open}
-          data={arrayLists}
+          data={boardList}
           addList={addList}
           addCard={addCard}
           editListTitle={editListTitle}

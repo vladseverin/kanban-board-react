@@ -3,21 +3,23 @@ import logger from 'redux-logger';
 import rootReducer from '../reducers';
 import { loadState, saveState } from '../utils/localStorage';
 
-const persistState = loadState();
+// const persistState = loadState();
 
-const subscribeOnStore = (store) => {
-  store.subscribe(() => saveState(store.getState()));
-};
+// const subscribeOnStore = (store) => {
+//   store.subscribe(() => saveState(store.getState()));
+// };
 
 export default function configureStore() {
   if (process.env.NODE_ENV === 'production') {
-    const store = createStore(rootReducer, persistState);
-    subscribeOnStore(store);
+    const store = createStore(rootReducer);
+    // subscribeOnStore(store);
     return store;
   }
 
-  const store = createStore(rootReducer, persistState, applyMiddleware(logger));
-  subscribeOnStore(store);
+  const store = createStore(rootReducer, applyMiddleware(logger));
+  // subscribeOnStore(store);
+
+  window.store = store;
 
   if (module.hot) {
     module.hot.accept('../reducers', () => {
